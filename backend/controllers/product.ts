@@ -21,7 +21,7 @@ const handleCreateNewProduct = async (req: Request, res: Response) => {
             return;
         }
 
-        const newProduct = await Product.create({
+        const newProduct: IProduct = await Product.create({
             name: body.name,
             brand: body.brand,
             category: body.category,
@@ -30,7 +30,7 @@ const handleCreateNewProduct = async (req: Request, res: Response) => {
             price: body.price,
             offer_price: body.offer_price || null,
             is_featured: body.is_featured || false,
-            product_details: body.description || null
+            description: body.description || null
         });
         res.status(201).json({ msg: `${newProduct.name} has been created` });
     } catch (error) {
