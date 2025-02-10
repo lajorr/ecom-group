@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import express from "express";
 import { connectMongoDb } from "./connection";
 import BrandRoutes from "./routes/brands";
@@ -6,10 +7,12 @@ import ProductRoutes from "./routes/products";
 
 import cors from 'cors';
 
-const app: express.Application = express();
-const PORT: number = 8000
+dotenv.config();
 
-connectMongoDb('mongodb://127.0.0.1:27017/ecom_kath')
+const app: express.Application = express();
+const PORT: number = Number(process.env.PORT) || 8000;
+
+connectMongoDb(process.env.MONGO_URL as string)
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
