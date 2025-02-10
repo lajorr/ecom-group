@@ -16,9 +16,9 @@ export const Home = () => {
     }, [])
 
     const productList = prodCtx.products
-    catCtx.fetchCategories()
     const uniqueCategories = catCtx.categories;
     const featuredProducts = productList.filter(product => product.is_featured);
+
     return (
         <div className=' max-w-[1536px] mx-auto'>
 
