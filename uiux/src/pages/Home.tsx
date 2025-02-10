@@ -24,7 +24,7 @@ export const Home = () => {
 
             <main className='mt-4' >
                 <div className='flex gap-4' >
-                    {/* side section */}
+
                     <section className='w-[350px] h-min bg-gray-200 p-2  rounded-xl sticky top-4'>
                         {uniqueCategories.map((cat) => (
                             <div key={cat._id}>{cat.name}</div>

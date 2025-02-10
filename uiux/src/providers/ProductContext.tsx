@@ -21,15 +21,18 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
         const prodResponse = await fetchAllProducts();
 
         const result: Product[] = await Promise.all(prodResponse.map(async (product) => {
-            console.log("brandddIDD" + product.brand)
+            console.log("product",product);
             const brand = await fetchBrandById(product.brand);
             const cat = await fetchCategoryById(product.category);
+
             return {
                 ...product,
                 brand,
                 category: cat
             }
         }));
+
+        console.log("result", result)
 
         setProducts(result)
     }

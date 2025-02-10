@@ -2,12 +2,15 @@ import { Request, Response } from "express";
 import Product, { IProduct } from "../models/product";
 
 const handleGetAllProducts = async (req: Request, res: Response) => {
-    const result = await Product.find({})
-
-
-    res
-        .status(200)
-        .json(result);
+    try {
+        const result = await Product.find({})
+        res
+            .status(200)
+            .json(result);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: 'Internal server error' });
+    }
 }
 
 const handleCreateNewProduct = async (req: Request, res: Response) => {
@@ -38,7 +41,6 @@ const handleCreateNewProduct = async (req: Request, res: Response) => {
 
 const handleDeleteProductById = async (req: Request, res: Response) => {
     const productId = req.params.id;
-    console.log(productId)
     try {
         const result = await Product.findByIdAndDelete(productId)
         if (result === null) {
@@ -53,21 +55,23 @@ const handleDeleteProductById = async (req: Request, res: Response) => {
 }
 
 const handleUpdateProductById = async (req: Request, res: Response) => {
-
-
     const productId = req.params.id;
-    console.log(productId)
-    if (!productId) {
-        res.status(400).json({ msg: 'No Product Found' });
-        return
-    }
+    try {
+        if (!productId) {
+            res.status(400).json({ msg: 'No Product Found' });
+            return
+        }
 
-    const result = await Product.findByIdAndUpdate(productId, req.body)
-    if (result === null) {
-        res.status(400).json({ msg: 'No product found' });
+        const result = await Product.findByIdAndUpdate(productId, req.body)
+        if (result === null) {
+            res.status(400).json({ msg: 'No product found' });
+        }
+        res.status(200)
+            .json({ msg: `product ${productId} has been updated` })
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: 'Internal server error' });
     }
-    res.status(200)
-        .json({ msg: `product ${productId} has been updated` })
 }
 
 

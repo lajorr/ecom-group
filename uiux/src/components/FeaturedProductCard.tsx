@@ -37,13 +37,11 @@ const FeaturedProductCard = ({ product }: ProductCardProp) => {
                 <div className='size-full py-3 px-4'>
                     <h2 className="font-bold text-[20px] leading-6">{name}</h2>
                     <p className="text-[16px] font-bold italic cursor-pointer hover:underline inline "
-                        onClick={() => { console.log("brand CLick") }}>{brand.name}</p>
+                        onClick={() => { console.log("brand CLick") }}>{brand.name}
+                    </p>
                     <p className="text-[14px] line-clamp-2 my-1">{description}</p>
                     <p className="text-[16px] font-[500]">${price}</p>
-                    {/* <div className='flex gap-2 items-center'>
-                        <StarIcon sx={{ fontSize: "20px", color: "#fab608" }} />
-                        <p className="text-[16px] font-[500]">{product_rating}</p>
-                    </div> */}
+
                 </div>
             </div>
         </div>
