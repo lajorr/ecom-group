@@ -1,6 +1,4 @@
 import { createContext, ReactNode, useContext, useState } from "react";
-import { fetchBrandById } from "../services/brand";
-import { fetchCategoryById } from "../services/category";
 import { fetchAllProducts } from "../services/products";
 import Product from "../types/Product";
 
@@ -21,14 +19,9 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
         const prodResponse = await fetchAllProducts();
 
         const result: Product[] = await Promise.all(prodResponse.map(async (product) => {
-            console.log("product",product);
-            const brand = await fetchBrandById(product.brand);
-            const cat = await fetchCategoryById(product.category);
-
+            console.log("product", product);
             return {
                 ...product,
-                brand,
-                category: cat
             }
         }));
 
