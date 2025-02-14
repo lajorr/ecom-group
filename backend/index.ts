@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express from "express";
 import { connectMongoDb } from "./connection";
 import BrandRoutes from "./routes/brands";
+import CartRoutes from "./routes/cart";
 import CategoryRoutes from "./routes/categories";
 import ProductRoutes from "./routes/products";
 
@@ -21,6 +22,7 @@ app.use(cors());
 app.use('/api/brands', BrandRoutes);
 app.use('/api/categories', CategoryRoutes);
 app.use('/api/products', ProductRoutes);
+app.use('/api/carts', CartRoutes);
 
 
 

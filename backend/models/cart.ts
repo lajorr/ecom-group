@@ -1,21 +1,37 @@
 import { model, Schema } from "mongoose";
 
-export interface ICart {
-    name: string,
-    description: string
-}
 
-const brandSchema = new Schema<ICart>({
-    name: {
+export interface ICart {
+    product_name: string,
+    price: number,
+    quantity: number,
+    sub_total: number,
+    img_url: string
+
+}
+const cartSchema = new Schema<ICart>({
+    product_name: {
         type: String,
         required: true
     },
-    description: {
-        type: String,
+    price: {
+        type: Number,
+        required: true
     },
-
+    quantity: {
+        type: Number,
+        required: true
+    },
+    sub_total: {
+        type: Number,
+        required: true
+    },
+    img_url: {
+        type: String,
+        required: true
+    }
 })
 
-const Brand = model('brand', brandSchema);
+export const Cart = model('cart', cartSchema);
 
-export default Brand;
+export default Cart;

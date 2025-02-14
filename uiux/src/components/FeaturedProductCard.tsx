@@ -24,7 +24,7 @@ const FeaturedProductCard = ({ product }: ProductCardProp) => {
         <div className='flex justify-center'>
             <div className='bg-gray-300 w-min rounded-xl overflow-hidden ' >
                 <div className='w-[300px] cursor-pointer relative group' >
-                    <img className="size-full object-contain" src={image}
+                    <img className="w-full h-[200px] object-cover " src={image}
                         alt="img"
                         onClick={() => { console.log("img clicked") }} />
                     <button

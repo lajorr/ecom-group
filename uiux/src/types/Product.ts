@@ -23,8 +23,8 @@ export type ProductResponse = {
     description: string;
     price: string;
     offer_price: string;
-    category: string;
-    brand: string;
+    category: Category;
+    brand: Brand;
     stock: number;
     image: string;
     is_featured: boolean;
