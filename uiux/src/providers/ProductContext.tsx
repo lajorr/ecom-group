@@ -19,13 +19,10 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
         const prodResponse = await fetchAllProducts();
 
         const result: Product[] = await Promise.all(prodResponse.map(async (product) => {
-            console.log("product", product);
             return {
                 ...product,
             }
         }));
-
-        console.log("result", result)
 
         setProducts(result)
     }

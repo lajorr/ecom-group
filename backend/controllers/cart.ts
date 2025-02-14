@@ -8,7 +8,7 @@ export const getCartItems = async (req: Request, res: Response) => {
         const total = cart.reduce((total, item) => total + item.sub_total, 0)
         const response = {
             items: cart,
-            cartTotal: total
+            cart_total: total
         }
         res.status(200).json(response)
     } catch (error) {
@@ -20,16 +20,17 @@ export const getCartItems = async (req: Request, res: Response) => {
 
 export const addToCart = async (req: Request, res: Response) => {
     try {
-        const { img_url, product_name, price, quantity, sub_total } = req.body;
-        if (!img_url || !product_name || !price || !quantity) {
+        const { image, product_name, price, quantity, sub_total, product_id } = req.body;
+        if (!image || !product_name || !price || !quantity) {
             res.status(400).json({ msg: 'All fields are required' });
             return
         }
         const subTotal = sub_total ?? quantity * price
 
         const cartItem: ICart = await Cart.create({
-            img_url,
+            image,
             product_name,
+            product_id,
             price,
             quantity,
             sub_total: subTotal
@@ -45,14 +46,14 @@ export const addToCart = async (req: Request, res: Response) => {
 
 export const deleteCartItem = async (req: Request, res: Response) => {
     try {
-        const cartId = req.params.id;
-        const result = await Cart.findByIdAndDelete(cartId)
+        const productId = req.params.id;
+        const result = await Cart.deleteOne({ product_id: productId })
         if (result === null) {
             res.status(400).json({ msg: 'No cart item found' });
             return
         }
         res.status(200)
-            .json({ msg: `cart item ${result._id} has been deleted` })
+            .json({ msg: `product ${productId} has been removed from cart` })
     } catch (error) {
         console.log(error);
         res.status(500).json({ msg: 'Internal server error' });
@@ -67,8 +68,8 @@ export const updateItemQuantity = async (req: Request, res: Response) => {
             return
         }
 
-        const cartId = req.params.id;
-        const result = await Cart.findByIdAndUpdate(cartId, { quantity, sub_total })
+        const prodId = req.params.id;
+        const result = await Cart.findOneAndUpdate({ product_id: prodId }, { quantity, sub_total })
         if (result === null) {
             res.status(400).json({ msg: 'No cart item found' });
             return

@@ -12,7 +12,6 @@ interface props {
 const CategoryProducts = ({ className = "", products, prodTitle, isFeatured = false }: props) => {
 
     const title = prodTitle ?? products[0].category.name;
-
     return (
         <>
             {products.length !== 0 ? (<section className={`w-full bg-gray-200 py-4 px-12 rounded-xl ${className} `}>
@@ -32,5 +31,4 @@ const CategoryProducts = ({ className = "", products, prodTitle, isFeatured = fa
         </>
     )
 }
-
 export default CategoryProducts
