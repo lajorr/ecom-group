@@ -80,3 +80,22 @@ export const updateItemQuantity = async (req: Request, res: Response) => {
         res.status(500).json({ msg: 'Internal server error' });
     }
 }
+
+export const handleCartCheckout = async (req: Request, res: Response) => {
+    try {
+        const cartItems = await Cart.find({})
+        if (cartItems.length === 0) {
+            res.status(400).json({ msg: 'Cart is empty' })
+            return
+        }
+        await Cart.deleteMany({})
+        const response = {
+            items: cartItems,
+            total: cartItems.reduce((total, item) => total + item.sub_total, 0),
+        }
+        res.status(200).json(response)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ msg: 'Internal server error' })
+    }
+}
