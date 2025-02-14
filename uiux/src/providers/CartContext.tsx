@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { addItemToCart, deleteItemFromCart, fetchCart, updateCartItemQuantity } from "../services/cart";
+import { addItemToCart, checkoutCart, deleteItemFromCart, fetchCart, updateCartItemQuantity } from "../services/cart";
 import { CartProduct } from "../types/Cart";
 import Product from "../types/Product";
 
@@ -12,8 +12,8 @@ type CartContextType = {
     removeItemFromCart: (id: string) => void,
     incrementQuantity: (id: string) => void,
     decrementQuantity: (id: string) => void,
-    // fetchCartItems: () => void,
     cartTotal: number,
+    cartCheckout: () => void
 
 }
 
@@ -97,9 +97,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
     const fetchCartItems = async () => {
         const cartResponse = await fetchCart();
-        console.log("fethcinggg", cartResponse.items)
         setCart(cartResponse.items);
         setCartTotal(cartResponse.cart_total)
+    }
+
+    const cartCheckout = async () => {
+        await checkoutCart();
+        await fetchCartItems()
     }
 
     return (
@@ -112,7 +116,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
                 incrementQuantity,
                 decrementQuantity,
                 cartTotal,
-                // fetchCartItems
+                cartCheckout
             }
         }
         >

@@ -1,9 +1,16 @@
+import { useNavigate } from 'react-router-dom';
 import CartOrderTile from '../components/cart/CartOrderTile';
 import { useCartContext } from "../providers/CartContext";
 
 const Cart = () => {
 
     const cartContext = useCartContext();
+    const navigate = useNavigate();
+    const handleCheckout = () => {
+        cartContext.cartCheckout();
+        alert("Checkout successful");
+        navigate('/')
+    }
 
     const columnNames = ["Product", "Price", "Quantity", "Sub total"];
     return (
@@ -39,9 +46,7 @@ const Cart = () => {
                     <button className={`${cartContext.orderLength === 0 ?
                         "bg-gray-500 cursor-not-allowed" : "bg-green-600"}
                          text-white py-2 rounded-[4px]`}
-                        onClick={() => {
-                            console.log("Checkout");
-                        }} >Checkout</button>
+                        onClick={handleCheckout} >Checkout</button>
                 </div>
             </div>
 

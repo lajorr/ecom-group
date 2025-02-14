@@ -35,5 +35,15 @@ export const updateCartItemQuantity = async (cartId: string, quantity: number, s
         console.log(error)
         throw error
     }
+}
 
+export const checkoutCart = async () => {
+    try {
+        const response = await api().post('/carts/checkout');
+        console.log(response.data)
+        return response.data;
+    } catch (error) {
+        console.error(error)
+        throw error
+    }
 }
