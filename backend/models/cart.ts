@@ -3,14 +3,19 @@ import { model, Schema } from "mongoose";
 
 export interface ICart {
     product_name: string,
+    product_id: string,
     price: number,
     quantity: number,
     sub_total: number,
-    img_url: string
+    image: string
 
 }
 const cartSchema = new Schema<ICart>({
     product_name: {
+        type: String,
+        required: true
+    },
+    product_id: {
         type: String,
         required: true
     },
@@ -26,7 +31,7 @@ const cartSchema = new Schema<ICart>({
         type: Number,
         required: true
     },
-    img_url: {
+    image: {
         type: String,
         required: true
     }

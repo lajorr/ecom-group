@@ -1,20 +1,19 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { addItemToCart, checkoutCart, deleteItemFromCart, fetchCart, updateCartItemQuantity } from "../services/cart";
+import { CartProduct } from "../types/Cart";
 import Product from "../types/Product";
 
-export type CartProduct = {
-    product: Product,
-    quantity: number,
-    subTotal: number
-}
+
 
 type CartContextType = {
     cartList: CartProduct[],
     addToCart: (product: Product) => void,
     orderLength: number,
-    getTotal: () => number,
     removeItemFromCart: (id: string) => void,
     incrementQuantity: (id: string) => void,
     decrementQuantity: (id: string) => void,
+    cartTotal: number,
+    cartCheckout: () => void
 
 }
 
@@ -22,66 +21,102 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
 
-    const [orders, setOrders] = useState<CartProduct[]>([]);
+    const [cart, setCart] = useState<CartProduct[]>([]);
+    const [cartTotal, setCartTotal] = useState<number>(0);
 
-    const calculateTotal = () => {
-        const total = orders.reduce((prev, current) => prev + current.subTotal, 0).toFixed(2)
-        return Number(total);
+    useEffect(() => { fetchCartItems() }, [])
+
+    const removeItem = async (id: string) => {
+        const updatedCart = cart.filter(order => order.product_id !== id);
+        await deleteItemFromCart(id);
+        await fetchCartItems()
+        setCart(updatedCart);
     }
 
-    const removeItem = (id: string) => {
-        const updatedCart = orders.filter(order => order.product._id !== id);
-        setOrders(updatedCart);
-    }
+    const addToCart = async (product: Product) => {
+        const newProd: CartProduct = {
+            product_name: product.name,
+            product_id: product._id,
+            quantity: 1,
+            sub_total: Number(product.price),
+            price: Number(product.price),
+            image: product.image
 
-    const addToCart = (product: Product) => {
-        const newOrder: CartProduct = { product, quantity: 1, subTotal: Number(product.price) }
-        const existingOrder = orders.find(order => order.product._id === product._id);
+        }
+        const existingProduct = cart.find(order => order.product_id === product._id);
 
-        if (existingOrder) {
-            existingOrder.quantity++;
-            existingOrder.subTotal += Number();
+        if (existingProduct) {
+            existingProduct.quantity++;
+            existingProduct.sub_total += Number(product.price);
         } else {
-            setOrders(prev => [...prev, newOrder]);
-        }
-    }
-
-    const incrementQuantity = (id: string) => {
-        const order = orders.find(order => order.product._id === id);
-        if (order) {
-            const updatedOrder: CartProduct = {
-                ...order,
-                quantity: order.quantity + 1,
-                subTotal: order.subTotal + Number(order.product.price)
-            };
-            setOrders(prev => prev.map(order => order.product._id === id ? updatedOrder : order));
-        }
-    }
-
-    const decrementQuantity = (id: string) => {
-        const order = orders.find(order => order.product._id === id);
-        if (order) {
-            if (order.quantity > 1) {
-                const updatedOrder = {
-                    ...order,
-                    quantity: order.quantity - 1,
-                    subTotal: order.subTotal - Number(order.product.price)
+            setCart(prev => [...prev, newProd]);
+            await addItemToCart(
+                {
+                    product_name: newProd.product_name,
+                    product_id: newProd.product_id,
+                    quantity: 1,
+                    sub_total: newProd.sub_total,
+                    image: newProd.image,
+                    price: Number(newProd.price)
                 }
-                setOrders(prev => prev.map(order => order.product._id === id ? updatedOrder : order))
+            );
+        }
+        await fetchCartItems()
+    }
+
+    const incrementQuantity = async (id: string) => {
+        const cartProd = cart.find(c => c.product_id === id);
+        if (cartProd) {
+            const updatedCart: CartProduct = {
+                ...cartProd,
+                quantity: cartProd.quantity + 1,
+                sub_total: cartProd.sub_total + Number(cartProd.price)
+            };
+            await updateCartItemQuantity(updatedCart.product_id, updatedCart.quantity, updatedCart.sub_total)
+            await fetchCartItems()
+            setCart(prev => prev.map(c => c.product_id === id ? updatedCart : c));
+        }
+
+    }
+
+    const decrementQuantity = async (id: string) => {
+        const cartProd = cart.find(order => order.product_id === id);
+        if (cartProd) {
+            if (cartProd.quantity > 1) {
+                const updatedCart = {
+                    ...cartProd,
+                    quantity: cartProd.quantity - 1,
+                    sub_total: cartProd.sub_total - Number(cartProd.price)
+                }
+                await updateCartItemQuantity(updatedCart.product_id, updatedCart.quantity, updatedCart.sub_total)
+                await fetchCartItems()
+                setCart(prev => prev.map(c => c.product_id === id ? updatedCart : c))
             }
         }
+    }
+
+    const fetchCartItems = async () => {
+        const cartResponse = await fetchCart();
+        setCart(cartResponse.items);
+        setCartTotal(cartResponse.cart_total)
+    }
+
+    const cartCheckout = async () => {
+        await checkoutCart();
+        await fetchCartItems()
     }
 
     return (
         <CartContext.Provider value={
             {
-                cartList: orders,
+                cartList: cart,
                 addToCart,
-                orderLength: orders.length,
-                getTotal: calculateTotal,
+                orderLength: cart.length,
                 removeItemFromCart: removeItem,
                 incrementQuantity,
-                decrementQuantity
+                decrementQuantity,
+                cartTotal,
+                cartCheckout
             }
         }
         >

@@ -1,9 +1,16 @@
+import { useNavigate } from 'react-router-dom';
 import CartOrderTile from '../components/cart/CartOrderTile';
 import { useCartContext } from "../providers/CartContext";
 
 const Cart = () => {
 
     const cartContext = useCartContext();
+    const navigate = useNavigate();
+    const handleCheckout = () => {
+        cartContext.cartCheckout();
+        alert("Checkout successful");
+        navigate('/')
+    }
 
     const columnNames = ["Product", "Price", "Quantity", "Sub total"];
     return (
@@ -18,6 +25,7 @@ const Cart = () => {
                 {cartContext.orderLength > 0 &&
                     cartContext.cartList.map(order => (
                         <CartOrderTile
+                            key={order.product_id}
                             removeItem={cartContext.removeItemFromCart}
                             order={order}
                             decrementQuantity={cartContext.decrementQuantity}
@@ -30,17 +38,15 @@ const Cart = () => {
 
             <div className=" flex justify-end mt-20 ">
                 <div className="bg-gray-200 rounded-[4px] px-4 py-4 flex flex-col gap-4 w-[300px]">
-                    <CartPricings title="Sub Total" value={`$${cartContext.getTotal()}`} />
+                    <CartPricings title="Sub Total" value={`$${cartContext.cartTotal}`} />
                     <hr className="bg-black h-0.5" />
                     <CartPricings title="Shipping Fee" value="Free" />
                     <hr className="bg-black h-0.5" />
-                    <CartPricings title="Total" value={`$${cartContext.getTotal()}`} />
+                    <CartPricings title="Total" value={`$${cartContext.cartTotal}`} />
                     <button className={`${cartContext.orderLength === 0 ?
                         "bg-gray-500 cursor-not-allowed" : "bg-green-600"}
                          text-white py-2 rounded-[4px]`}
-                        onClick={() => {
-                            console.log("Checkout");
-                        }} >Checkout</button>
+                        onClick={handleCheckout} >Checkout</button>
                 </div>
             </div>
 
