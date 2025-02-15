@@ -1,24 +1,29 @@
+import dotenv from "dotenv";
 import express from "express";
 import { connectMongoDb } from "./connection";
 import BrandRoutes from "./routes/brands";
+import CartRoutes from "./routes/cart";
 import CategoryRoutes from "./routes/categories";
 import ProductRoutes from "./routes/products";
 
-import cors from 'cors';
+import cors from "cors";
+
+dotenv.config();
 
 const app: express.Application = express();
-const PORT: number = 8000
+const PORT: number = Number(process.env.PORT) || 8000;
 
-connectMongoDb('mongodb://127.0.0.1:27017/ecom_kath')
+connectMongoDb(process.env.MONGO_URL as string);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-app.use('/api/brands', BrandRoutes);
-app.use('/api/categories', CategoryRoutes);
-app.use('/api/products', ProductRoutes);
+app.use("/api/brands", BrandRoutes);
+app.use("/api/categories", CategoryRoutes);
+app.use("/api/products", ProductRoutes);
+app.use("/api/carts", CartRoutes);
 
-
-
-app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+app.listen(PORT, () =>
+  console.log(`Server running at http://localhost:${PORT}`)
+);

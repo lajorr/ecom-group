@@ -1,247 +1,101 @@
-# Notus React <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fdemos.creative-tim.com%2Fnotus-react%2F%23%2F&text=Start%20your%20development%20with%20a%20Free%20Tailwind%20CSS%20and%20React%20UI%20Kit%20and%20Admin.%20Let%20Notus%20React%20amaze%20you%20with%20its%20cool%20features%20and%20build%20tools%20and%20get%20your%20project%20to%20a%20whole%20new%20level.%20" target="_blank">![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)</a>
+# TailAdmin React - Free React Tailwind Admin Dashboard Template
 
-![version](https://img.shields.io/badge/version-1.1.0-blue.svg) ![license](https://img.shields.io/badge/license-MIT-blue.svg) <a href="https://github.com/creativetimofficial/notus-react/issues?q=is%3Aopen+is%3Aissue" target="_blank">![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/notus-react.svg)</a> <a href="https://github.com/creativetimofficial/notus-react/issues?q=is%3Aissue+is%3Aclosed" target="_blank">![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/notus-react.svg)</a> <a href="https://gitter.im/creative-tim-general/Lobby" target="_blank">![Join the chat at https://gitter.im/NIT-dgp/General](https://badges.gitter.im/NIT-dgp/General.svg)</a> <a href="https://discord.gg/E4aHAQy" target="_blank">![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg)</a>
+TailAdmin is a free and open-source admin dashboard template built on **React and Tailwind CSS**, providing developers with everything they need to create a comprehensive, data-driven back-end, 
+dashboard, or admin panel solution for upcoming web projects.
 
-![Notus React](https://github.com/creativetimofficial/public-assets/blob/master/notus-react/notus-react.jpg?raw=true)
-
-### A beautiful UI Kit and Admin for Tailwind CSS and React.
-
-Start your development with a Free Tailwind CSS and React UI Kit and Admin. Let Notus React amaze you with its cool features and build tools and get your project to a whole new level.
-
-Notus React is Free and Open Source. It features multiple HTML and React elements and it comes with dynamic components for React.
-
-It is based on [Tailwind Starter Kit](https://www.creative-tim.com/learning-lab/tailwind-starter-kit/presentation?ref=nr-github-readme) by Creative Tim, and it is build with both presentation pages, and pages for an admin dashboard.
-
-Speed up your web development with a beautiful product made by <a href="https://creative-tim.com/" target="_blank">Creative Tim </a>.
-If you like bright and fresh colors, you will love this Free Tailwind CSS Template! It features a huge number of components that can help you create amazing websites.
-
-### Get Started
-
-- Install NodeJS **LTS** version from <a href="https://nodejs.org/en/?ref=creativetim">NodeJs Official Page</a>
-- Download the product on this page
-- Unzip the downloaded file to a folder in your computer
-- Open Terminal
-- Go to your file project (where you’ve unzipped the product)
-- (If you are on a linux based terminal) Simply run `npm run install:clean`
-- (If not) Run in terminal `npm install`
-- (If not) Run in terminal `npm run build:tailwind` (each time you add a new class, a class that does not exist in `src/assets/styles/tailwind.css`, you will need to run this command)
-- (If not) Run in terminal `npm start`
-- Navigate to https://localhost:3000
-- Check more about [Tailwind CSS](https://tailwindcss.com/?ref=creativetim)
-
-### Pages
-
-If you want to get inspiration or just show something directly to your clients,
-you can jump start your development with our pre-built example pages. You will be able
-to quickly set up the basic structure for your web project.
-
-Here are all the page from the project:
-- [Presentation](https://demos.creative-tim.com/notus-react/?ref=nr-github-readme)
-- Admin Samples
-  - [Dashboard](https://demos.creative-tim.com/notus-react/admin/dashboard?ref=nr-github-readme)
-  - [Settings](https://demos.creative-tim.com/notus-react/admin/settings?ref=nr-github-readme)
-  - [Tables](https://demos.creative-tim.com/notus-react/admin/tables?ref=nr-github-readme)
-  - [Maps](https://demos.creative-tim.com/notus-react/admin/maps?ref=nr-github-readme)
-- Authentication Samples
-  - [Login](https://demos.creative-tim.com/notus-react/auth/login?ref=nr-github-readme)
-  - [Register](https://demos.creative-tim.com/notus-react/auth/register?ref=nr-github-readme)
-- Presentation Samples
-  - [Landing](https://demos.creative-tim.com/notus-react/landing?ref=nr-github-readme)
-  - [Profile](https://demos.creative-tim.com/notus-react/profile?ref=nr-github-readme)
+[![tailwind react admin template](https://ucarecdn.com/d2a6daed-eb9c-4c2f-8a95-4419c450e23a/tailadminreact.jpg)](https://react-demo.tailadmin.com/)
 
 
-### Fully Coded Components
+With TailAdmin, you get access to all the necessary dashboard UI components, elements, and pages required to build a feature-rich and complete dashboard or admin panel. Whether you're building dashboard or admin panel for a complex web application or a simple website, TailAdmin is the perfect solution to help you get up and running quickly.
 
-Notus React is built with over frontend 120 components, giving you the freedom of choosing and combining. All components can take variations in colors, that you can easily modify using Tailwind CSS classes (NOTE: each time you add a new class, a class that does not exist in `src/assets/styles/tailwind.css`, you will need to compile again tailwind).
+### [✨ Visit Website](https://tailadmin.com/)
 
-You will save a lot of time going from prototyping to full-functional code, because all elements are implemented.
-This Free Tailwind CSS Template is coming with prebuilt examples, so the development process is seamless, switching from our pages to the real website is very easy to be done.
+### [🚀 PRO Demo](https://react-demo.tailadmin.com/)
+### [🚀 FREE Demo](https://free-react-demo.tailadmin.com/)
 
-Every element has multiple states for colors, styles, hover, focus, that you can easily access and use.
+### TailAdmin React PRO vs TailAdmin React FREE Comparison 📊
 
+#### [TailAdmin React PRO](https://react-demo.tailadmin.com/)
+- 5 Unique Dashboards: Analytics, Ecommerce, Marketing, and CRM (More will be added)
+- 120+ Dashboard UI Components
+- 200+ Total UI Elements
+- 45+ HTML Files
+- All Essential Elements and Files
+- Full Figma Design Source - As Shown on Demo
 
-### CSS Components
+___
 
-Notus React comes with 120 Fully Coded CSS elements, such as [Alerts](https://www.creative-tim.com/learning-lab/tailwind/react/alerts/notus?ref=nr-github-readme), [Buttons](https://www.creative-tim.com/learning-lab/tailwind/react/buttons/notus?ref=nr-github-readme), [Inputs](https://www.creative-tim.com/learning-lab/tailwind/react/inputs/notus?ref=nr-github-readme) and many more.
+#### [TailAdmin React FREE](https://free-react-demo.tailadmin.com/)
+- 1 Unique Dashboard
+- 30+ Dashboard UI Components
+- 50+ Total UI Elements 
+- 10+ HTML Files
+- TypeScript Support
+- Basic UI Kit Elements and Files
+- Figma Design Source - Free Sample
+___
 
-Please [check all of them here](https://www.creative-tim.com/learning-lab/tailwind/react/alerts/notus?ref=nr-github-readme).
+### [⬇️ Download Now](https://tailadmin.com/download)
 
-### React Components
+### [⚡ Get PRO Version](https://tailadmin.com/pricing)
 
-We also feature the following 18 dynamic components:
-- [Alerts](https://www.creative-tim.com/learning-lab/tailwind/react/alerts/notus?ref=nr-github-readme)
-- [Popper for Menus](https://www.creative-tim.com/learning-lab/tailwind/react/dropdowns/notus?ref=nr-github-readme)
-- [Menus](https://www.creative-tim.com/learning-lab/tailwind/react/menus/notus?ref=nr-github-readme)
-- [Modals](https://www.creative-tim.com/learning-lab/tailwind/react/modals/notus?ref=nr-github-readme)
-- [Navbars](https://www.creative-tim.com/learning-lab/tailwind/react/navbar/notus?ref=nr-github-readme)
-- [Popper for popover content](https://www.creative-tim.com/learning-lab/tailwind/react/popovers/notus?ref=nr-github-readme)
-- [Tabs](https://www.creative-tim.com/learning-lab/tailwind/react/tabs/notus?ref=nr-github-readme)
-- [Popper for tooltips content](https://www.creative-tim.com/learning-lab/tailwind/react/tooltips/notus?ref=nr-github-readme)
+### [📄 Documentation/Installation](https://tailadmin.com/docs)
 
+### [🖌️ TailAdmin Figma Free Sample](https://www.figma.com/community/file/1214477970819985778)
 
-## Table of Contents
+### [👉 TailAdmin HTML Version](https://github.com/TailAdmin/tailadmin-free-tailwind-dashboard-template)
 
-* [Versions](#versions)
-* [Documentation](#documentation)
-* [Quick Start](#quick-start)
-* [Deploy](#deploy)
-* [Files and folders](#files-and-folders)
-* [Browser Support](#browser-support)
-* [Reporting Issues](#reporting-issues)
-* [Licensing](#licensing)
-* [Useful Links](#useful-links)
-* [Resources](#resources)
+TailAdmin React dashboard template based on Tailwind CSS is a pre-designed starting point for building a web-based dashboard using the React JavaScript library and the Tailwind CSS utility-first framework. This Tailwind CSS + React Dashboard Template - built using Tailwind CSS and **includes pre-built components, such as navigation menus, charts, tables, and forms, which can be easily customized and integrated into a small-to-large React web application**.
 
-## Versions
+If you're looking for a high-quality **React-Tailwind Dashboard, Admin Panel Template, or UI Kit**, TailAdmin will be the perfect choice for you!
 
-[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/angular.jpg?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/notus-angular?ref=nr-github-readme)[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/js.png?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/notus-js?ref=nr-github-readme)[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/nextjs.jpg?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/notus-nextjs?ref=nr-github-readme)[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/react.jpg?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/notus-react?ref=nr-github-readme)[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/svelte.jpg?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/notus-svelte?ref=nr-github-readme)[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/vue.jpg?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/vue-notus?ref=nr-github-readme)
+## TailAdmin React - Installation
 
+You'll need to install Node.js >=v14.16+ (Recommended Version) (NPM comes along with it) and TailAdmin uses **Vite** for frontend tooling, to peform installation and building production version, please follow these steps from below:
 
-| Angular | JavaScript / HTML | NextJS | React | Svelte | VueJS |
-| :---: | :---: | :---: | :---: | :---: | :---: |
-| [![Notus Angular](https://github.com/creativetimofficial/public-assets/blob/master/notus-angular/notus-angular.jpg?raw=true)](https://www.creative-tim.com/product/notus-angular?ref=nr-github-readme)  | [![Notus JS](https://github.com/creativetimofficial/public-assets/blob/master/notus-js/notus-js.jpg?raw=true)](https://www.creative-tim.com/product/notus-js?ref=nr-github-readme)  | [![Notus NextJS](https://github.com/creativetimofficial/public-assets/blob/master/notus-nextjs/notus-nextjs.jpg?raw=true)](https://www.creative-tim.com/product/notus-nextjs?ref=nr-github-readme)  | [![Notus React](https://github.com/creativetimofficial/public-assets/blob/master/notus-react/notus-react.jpg?raw=true)](https://www.creative-tim.com/product/notus-react?ref=nr-github-readme)  | [![Notus Svelte](https://github.com/creativetimofficial/public-assets/blob/master/notus-svelte/notus-svelte.jpg?raw=true)](https://www.creative-tim.com/product/notus-svelte?ref=nr-github-readme)  | [![Vue Notus](https://github.com/creativetimofficial/public-assets/blob/master/vue-notus/vue-notus.jpg?raw=true)](https://www.creative-tim.com/product/vue-notus?ref=nr-github-readme)
+- Use terminal and navigate to the project (tailadmin-react) root.
 
-## Documentation
-The documentation for the Notus React is hosted at our <a href="https://www.creative-tim.com/learning-lab/tailwind/react/overview/notus?ref=nr-readme" target="_blank">website</a>.
+- Then run : <code>npm install</code>
 
-## Quick start
+- Then run : <code>npm run dev</code>
 
-- <a href="https://www.creative-tim.com/product/notus-react?ref=nr-github-readme" target="_blank">Download from Creative Tim</a>.
-- <a href="https://github.com/creativetimofficial/notus-react" target="_blank">Check it on Github</a>.
+Now, in the browser go to <code>localhost:5173</code>
 
-## Deploy
+**For Production Build**
+Run : <code>npm run build</code>
 
-:rocket: You can deploy your own version of the template to Genezio with one click:
+Default build output directory: /dist
 
-[![Deploy to Genezio](https://raw.githubusercontent.com/Genez-io/graphics/main/svg/deploy-button.svg)](https://app.genez.io/start/deploy?repository=https://github.com/creativetimofficial/notus-react&utm_source=github&utm_medium=referral&utm_campaign=github-creativetim&utm_term=deploy-project&utm_content=button-head)
+This command will generate a dist as build folder in the root of your template that you can upload to your server.
 
-## Files and Folder
-
-This is the project structure that you will get upon the download:
-```
-notus-react
-.
-├── CHANGELOG.md
-├── ISSUE_TEMPLATE.md
-├── LICENSE.md
-├── README.md
-├── gulpfile.js
-├── jsconfig.json
-├── package.json
-├── public
-│   ├── favicon.ico
-│   ├── index.html
-│   ├── manifest.json
-│   └── robots.txt
-├── src
-│   ├── assets
-│   │   ├── img
-│   │   │   ├── github.svg
-│   │   │   └── google.svg
-│   │   └── styles
-│   │       ├── index.css
-│   │       └── tailwind.css
-│   ├── components
-│   │   ├── Cards
-│   │   │   ├── CardBarChart.js
-│   │   │   ├── CardLineChart.js
-│   │   │   ├── CardPageVisits.js
-│   │   │   ├── CardProfile.js
-│   │   │   ├── CardSettings.js
-│   │   │   ├── CardSocialTraffic.js
-│   │   │   ├── CardStats.js
-│   │   │   └── CardTable.js
-│   │   ├── Dropdowns
-│   │   │   ├── IndexDropdown.js
-│   │   │   ├── NotificationDropdown.js
-│   │   │   ├── PagesDropdown.js
-│   │   │   ├── TableDropdown.js
-│   │   │   └── UserDropdown.js
-│   │   ├── Footers
-│   │   │   ├── Footer.js
-│   │   │   ├── FooterAdmin.js
-│   │   │   └── FooterSmall.js
-│   │   ├── Headers
-│   │   │   └── HeaderStats.js
-│   │   ├── Maps
-│   │   │   └── MapExample.js
-│   │   ├── Navbars
-│   │   │   ├── AdminNavbar.js
-│   │   │   ├── AuthNavbar.js
-│   │   │   └── IndexNavbar.js
-│   │   └── Sidebar
-│   │       └── Sidebar.js
-│   ├── index.js
-│   ├── layouts
-│   │   ├── Admin.js
-│   │   └── Auth.js
-│   └── views
-│       ├── Index.js
-│       ├── Landing.js
-│       ├── Profile.js
-│       ├── admin
-│       │   ├── Dashboard.js
-│       │   ├── Maps.js
-│       │   ├── Settings.js
-│       │   └── Tables.js
-│       └── auth
-│           ├── Login.js
-│           └── Register.js
-└── tailwind.config.js
-```
-
-## Browser Support
-
-At present, we officially aim to support the last two versions of the following browsers:
-
-| Chrome | Firefox | Edge | Safari | Opera |
-|:---:|:---:|:---:|:---:|:---:|
-| <img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/chrome-logo.png?raw=true" width="64" height="64"> | <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/firefox-logo.png" width="64" height="64"> | <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/edge-logo.png" width="64" height="64"> | <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/safari-logo.png" width="64" height="64"> | <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/opera-logo.png" width="64" height="64"> |
-
-## Reporting Issues
-
-We use GitHub Issues as the official bug tracker for the Notus React. Here are some advices for our users that want to report an issue:
-
-1. Make sure that you are using the latest version of the Notus React. Check the CHANGELOG from your dashboard on our <a href="https://www.creative-tim.com/?ref=nr-readme" target="_blank">website</a>.
-2. Providing us reproducible steps for the issue will shorten the time it takes for it to be fixed.
-3. Some issues may be browser specific, so specifying in what browser you encountered the issue might help.
-
-## Licensing
-
-- Copyright 2021 <a href="https://www.creative-tim.com/?ref=nr-readme" target="_blank">Creative Tim</a>
-
-- Licensed under <a href="https://github.com/creativetimofficial/notus-react/blob/main/LICENSE.md" target="_blank">MIT</a>
-
-## Useful Links
-
-- <a href="https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w" target="_blank">Tutorials</a>
-- <a href="https://www.creative-tim.com/affiliates/new?ref=nr-readme" target="_blank">Affiliate Program</a> (earn money)
-- <a href="http://blog.creative-tim.com/?ref=nr-readme" target="_blank">Blog Creative Tim</a>
-- <a href="https://www.creative-tim.com/templates/free?ref=nr-readme" target="_blank">Free Products</a> from Creative Tim
-- <a href="https://www.creative-tim.com/templates/premium?ref=nr-readme" target="_blank">Premium Products</a> from Creative Tim
-- <a href="https://www.creative-tim.com/templates/react?ref=nr-readme" target="_blank">React Products</a> from Creative Tim
-- <a href="https://www.creative-tim.com/templates/angular?ref=nr-readme" target="_blank">Angular Products</a> from Creative Tim
-- <a href="https://www.creative-tim.com/templates/vuejs?ref=nr-readme" target="_blank">VueJS Products</a> from Creative Tim
-- <a href="https://www.creative-tim.com/templates?ref=nr-readme" target="_blank">More products</a> from Creative Tim
-- Check our Bundles <a href="https://www.creative-tim.com/bundles?ref=nr-readme" target="_blank">here</a>
-- Check our awesome builder <a href="https://www.creative-tim.com/builder/argon?ref=nr-readme" target="_blank">here</a>
-- Check Tailwind Starter Kit, the project behind this product <a href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/presentation?ref=nr-readme" target="_blank">here</a>
-
-### Social Media
-
-Twitter: <a href="https://twitter.com/CreativeTim" target="_blank">https://twitter.com/CreativeTim</a>
-
-Facebook: <a href="https://www.facebook.com/CreativeTim" target="_blank">https://www.facebook.com/CreativeTim</a>
-
-Dribbble: <a href="https://dribbble.com/creativetim" target="_blank">https://dribbble.com/creativetim</a>
-
-Instagram: <a href="https://www.instagram.com/creativetimofficial/" target="_blank">https://www.instagram.com/creativetimofficial/</a>
+## Tons of React Tailwind Components for Dashboard
+React and Tailwind are two popular technologies that have taken the web development world by storm. React is a JavaScript library for building user interfaces, while Tailwind is a utility-first CSS framework that makes it easy to style web applications. TailAdmin React Offers 200+ Essential React + Tailwind CSS UI Components that you copy-paste and use with your dashboard projects. That includes - charts, graphs, navbars, tabs, buttons, cards, tables, profile, tabs, forms, modals, app pages, calender, web apps example templates and more... for React and Styled using Tailwind CSS
 
 
-## Resources
-- Demo: <a href="https://demos.creative-tim.com/notus-react/?ref=nr-readme" target="_blank">https://demos.creative-tim.com/notus-react/?ref=nr-readme</a>
-- Download Page: <a href="https://www.creative-tim.com/product/notus-react?ref=nr-github-readme" target="_blank">https://www.creative-tim.com/product/notus-react</a>
-- Documentation: <a href="https://www.creative-tim.com/learning-lab/tailwind/react/overview/notus?ref=nr-readme" target="_blank">https://www.creative-tim.com/learning-lab/tailwind/react/overview/notus?ref=nr-readme</a>
-- License Agreement: <a href="https://www.creative-tim.com/license?ref=nr-readme" target="_blank">https://www.creative-tim.com/license?ref=nr-readme</a>
-- Support: <a href="https://www.creative-tim.com/contact-us?ref=nr-readme" target="_blank">https://www.creative-tim.com/contact-us?ref=nr-readme</a>
-- Issues: <a href="https://github.com/creativetimofficial/notus-react/issues" target="_blank">Github Issues Page</a>
+
+## Update Logs
+
+### Version 1.3.7 - [June 20, 2024]
+
+#### Enhancements
+
+- **Enhancement 01:** Remove Repetition of DefaultLayout in every Pages
+- **Enhancement 02:** Add ClickOutside Component for reduce repeated functionality in Header Message, Notification and User Dropdowns.
+
+### Version 1.3.6 - [Jan 31, 2024]
+
+#### Enhancements
+
+- **Enhancement 01:** Integrate flatpickr in [Date Picker/Form Elements]
+- **Enhancement 02:** Change color after select an option [Select Element/Form Elements].
+- **Enhancement 03:** Make it functional [Multiselect Dropdown/Form Elements].
+- **Enhancement 04:** Make best value editable [Pricing Table One/Pricing Table].
+- **Enhancement 05:** Rearrange Folder structure.
+
+### Version 1.2.0 - [Apr 28, 2023]
+
+- Add Typescript in TailAdmin React.
+
+### Version 1.0.0 - Initial Release - [Mar 13, 2023]
+
+- Initial release of TailAdmin React.
