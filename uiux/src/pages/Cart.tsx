@@ -12,14 +12,16 @@ const Cart = () => {
         navigate('/')
     }
 
-    const columnNames = ["Product", "Price", "Quantity", "Sub total"];
-    return (
-        <div className="mt-12 ">
-            <div className="grid grid-cols-4 items-center text-[16px] py-3 px-4 mb-5 bg-gray-200" >
-                {columnNames.map((name, idx) => (
-                    <div key={name} className={`${idx !== 0 && "place-self-end"}`}>{name}</div>
-                ))}
-            </div>
+  const columnNames = ["Product", "Price", "Quantity", "Sub total"];
+  return (
+    <div className="mt-12 ">
+      <div className="grid grid-cols-4 items-center text-[16px] py-3 px-4 mb-5 bg-gray-200">
+        {columnNames.map((name, idx) => (
+          <div key={name} className={`${idx !== 0 && "place-self-end"}`}>
+            {name}
+          </div>
+        ))}
+      </div>
 
             <div className="flex flex-col gap-4">
                 {cartContext.orderLength > 0 &&
@@ -56,16 +58,16 @@ const Cart = () => {
 }
 
 type CartPricingsType = {
-    title: string,
-    value: string
-
-}
+  title: string;
+  value: string;
+};
 const CartPricings = ({ title, value }: CartPricingsType) => {
-    return (
-        <p className="text-[14px] flex justify-between">
-            <span className="font-bold" >{title}:</span>{value}
-        </p>
-    )
-}
+  return (
+    <p className="text-[14px] flex justify-between">
+      <span className="font-bold">{title}:</span>
+      {value}
+    </p>
+  );
+};
 
-export default Cart
+export default Cart;
