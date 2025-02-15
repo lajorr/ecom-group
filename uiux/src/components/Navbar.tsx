@@ -9,7 +9,6 @@ import { useEffect } from "react";
 const Navbar = () => {
   const navigate = useNavigate();
   const cartContext = useCartContext();
-  //   const navItems = ["Clothes", "Tech", "Food"];
   const catCtx = useCategoryContext();
 
   useEffect(() => {
