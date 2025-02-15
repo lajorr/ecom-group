@@ -1,4 +1,4 @@
-import { ProductResponse } from "../types/product";
+import { ProductRequest, ProductResponse } from "../types/product";
 import { api } from "../utils/Api";
 
 
@@ -7,7 +7,7 @@ export const fetchAllProducts = async () => {
     console.log("products", response.data)
     return response.data;
 }
-export const addProduct = async (data: Omit<ProductResponse, '_id'>) => {
+export const addProduct = async (data: ProductRequest) => {
     const response = await api().post('products', data)
     return response.data;
 }

@@ -1,7 +1,7 @@
 import Breadcrumb from "../../../components/Breadcrumbs/Breadcrumb"
 import ProductItemTable from "../../../components/Tables/admin/ProductItemTable"
 import { useProductContext } from "../../../provider/ProductProvider"
-import { Product, ProductResponse } from "../../../types/product"
+import { ProductResponse } from "../../../types/product"
 
 const ViewProducts = () => {
 
@@ -17,7 +17,7 @@ const ViewProducts = () => {
         alert(result)
     }
 
-    const prodList: Product[] = prodCtx.products
+    const prodList: ProductResponse[] = prodCtx.products
     // console.log("asdasdasda" + prodList[0].name)
 
     const columns = ['Name', 'Category', 'Brand', 'Price', 'Is Featured', 'Action']

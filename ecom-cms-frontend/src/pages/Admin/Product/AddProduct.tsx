@@ -5,7 +5,7 @@ import MySwitcher from "../../../components/Switchers/MySwitcher"
 import { useBrandContext } from "../../../provider/BrandProvider"
 import { useCategoryContext } from "../../../provider/CategoryProvider"
 import { useProductContext } from "../../../provider/ProductProvider"
-import { ProductResponse } from "../../../types/product"
+import { ProductRequest } from "../../../types/product"
 
 const AddProductPage = () => {
 
@@ -32,7 +32,7 @@ const AddProductPage = () => {
         const is_featured = enabled;
         const image = formData.get('image') as string;
 
-        const newProduct: Omit<ProductResponse, '_id'> = {
+        const newProduct: Omit<ProductRequest, '_id'> = {
             name,
             price,
             offer_price,

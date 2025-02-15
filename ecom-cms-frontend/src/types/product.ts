@@ -23,3 +23,7 @@ export type ProductResponse = {
   stock: number;
   image: string;
 }
+export type ProductRequest = Omit<ProductResponse, '_id' | 'brand' | 'category'> & {
+  category: string;
+  brand: string;
+}
