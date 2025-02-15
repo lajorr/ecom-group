@@ -12,6 +12,7 @@ import { CartProvider } from "./providers/CartContext";
 import { CategoryProvider } from "./providers/CategoryContext";
 import { ProductProvider } from "./providers/ProductContext";
 import { BrandProvider } from "./providers/BrandContext";
+import SearchResults from "./pages/SearchResults";
 
 function App() {
   const router = createBrowserRouter(
@@ -20,6 +21,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="cart" element={<Cart />} />
         <Route path="category/:categoryName" element={<CategoryPage />} />
+        <Route path="search" element={<SearchResults />} />
       </Route>,
     ])
   );
