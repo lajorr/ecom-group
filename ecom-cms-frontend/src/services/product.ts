@@ -4,7 +4,6 @@ import { api } from "../utils/Api";
 
 export const fetchAllProducts = async () => {
     const response = await api().get<ProductResponse[]>('products')
-    console.log("products", response.data)
     return response.data;
 }
 export const addProduct = async (data: ProductRequest) => {

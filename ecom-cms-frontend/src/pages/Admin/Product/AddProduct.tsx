@@ -23,8 +23,8 @@ const AddProductPage = () => {
         const formData = new FormData(form);
 
         const name = formData.get('name') as string;
-        const price = '$' + formData.get('price');
-        const offer_price = '$' + formData.get('offerPrice');
+        const price = formData.get('price') as string;
+        const offer_price = formData.get('offerPrice') as string;
         const brandId = formData.get('brandId') as string;
         const categoryId = formData.get('categoryId') as string;
         const description = formData.get('description') as string;
