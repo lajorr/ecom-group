@@ -48,6 +48,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         if (existingProduct) {
             existingProduct.quantity++;
             existingProduct.sub_total += Number(product.price);
+            await updateCartItemQuantity(existingProduct.product_id, existingProduct.quantity, existingProduct.sub_total)
         } else {
             setCart(prev => [...prev, newProd]);
             await addItemToCart(
