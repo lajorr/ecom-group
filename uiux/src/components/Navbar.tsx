@@ -35,7 +35,6 @@ const Navbar = () => {
               key={item._id}
               className="text-[20px] text-white inline-block mr-8 font-semibold cursor-pointer"
             >
-              {/* {item.name} */}
               <Link to={`/category/${item.name.toLowerCase()}`}>
                 {item.name}
               </Link>

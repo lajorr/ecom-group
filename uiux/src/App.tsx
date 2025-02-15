@@ -11,6 +11,7 @@ import { Home } from "./pages/Home";
 import { CartProvider } from "./providers/CartContext";
 import { CategoryProvider } from "./providers/CategoryContext";
 import { ProductProvider } from "./providers/ProductContext";
+import { BrandProvider } from "./providers/BrandContext";
 
 function App() {
   const router = createBrowserRouter(
@@ -27,7 +28,9 @@ function App() {
     <CartProvider>
       <ProductProvider>
         <CategoryProvider>
-          <RouterProvider router={router}></RouterProvider>
+          <BrandProvider>
+            <RouterProvider router={router}></RouterProvider>
+          </BrandProvider>
         </CategoryProvider>
       </ProductProvider>
     </CartProvider>
