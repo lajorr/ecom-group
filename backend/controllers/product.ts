@@ -3,7 +3,7 @@ import Product, { IProduct } from "../models/product";
 
 const handleGetAllProducts = async (req: Request, res: Response) => {
     try {
-        const result = await Product.find({})
+        const result = await Product.find({}).populate('category','name').populate('brand','name')
         res
             .status(200)
             .json(result);
