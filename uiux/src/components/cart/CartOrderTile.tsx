@@ -1,5 +1,3 @@
-
-
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
@@ -41,5 +39,4 @@ const CartOrderTile = ({ order, removeItem, incrementQuantity, decrementQuantity
         </div>
     )
 }
-
 export default CartOrderTile
