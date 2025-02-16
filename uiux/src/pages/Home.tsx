@@ -29,7 +29,7 @@ export const Home = () => {
 
   // 🔹 State for Filters
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 500]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000]);
 
   // 🔹 Handle Brand Selection
   const handleBrandChange = (brand: string) => {

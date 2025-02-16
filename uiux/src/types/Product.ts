@@ -21,7 +21,7 @@ export type ProductResponse = {
   name: string;
   description: string;
   price: number;
-  offer_price: string;
+  offer_price?: number;
   category: Category;
   brand: Brand;
   stock: number;

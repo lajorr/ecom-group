@@ -13,7 +13,7 @@ const Navbar = () => {
 
   useEffect(() => {
     catCtx.fetchCategories;
-  });
+  }, []);
 
   const catList = catCtx.categories;
   return (
