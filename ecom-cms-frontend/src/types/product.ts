@@ -1,5 +1,5 @@
-import { Brand } from "./brand";
-import { Category } from "./category";
+import { Brand } from './brand';
+import { Category } from './category';
 
 export type PRODUCT = {
   image: string;
@@ -10,16 +10,15 @@ export type PRODUCT = {
   profit: number;
 };
 
-
 export type ProductResponse = {
   _id: string;
   name: string;
   category: Category;
   brand: Brand;
-  price: string;
-  offer_price: string | null;
+  price: number;
+  offer_price: number | null;
   description: string | null;
-  is_featured: boolean,
+  is_featured: boolean;
   stock: number;
   image: string;
 }

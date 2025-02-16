@@ -17,4 +17,4 @@ router.route('/:id')
     .patch(handleUpdateProductById);
 
 
-export default router;``
+export default router;
