@@ -32,10 +32,10 @@ const AddProductPage = () => {
         const is_featured = enabled;
         const image = formData.get('image') as string;
 
-        const newProduct: Omit<ProductRequest, '_id'> = {
+        const newProduct: ProductRequest = {
             name,
-            price,
-            offer_price,
+            price: Number(price),
+            offer_price: Number(offer_price),
             brand: brandId,
             category: categoryId,
             description,

@@ -34,8 +34,8 @@ const ProductItemTable = ({ columnList, itemData, onDelete, onEdit }: ProductIte
 
         const newProduct: ProductRequest = {
             name,
-            price,
-            offer_price,
+            price: Number(price),
+            offer_price: Number(offer_price),
             brand: brandId,
             category: categoryId,
             description,
