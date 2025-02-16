@@ -21,7 +21,7 @@ export const deleteProductById = async (id: string) => {
     return response.data;
 }
 
-export const updateProductById = async (id: string, data: Omit<ProductResponse, '_id'>) => {
+export const updateProductById = async (id: string, data: ProductRequest) => {
     const response = await api().patch(`products/${id}`, data)
     return response.data;
 }

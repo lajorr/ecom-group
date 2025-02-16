@@ -1,21 +1,21 @@
 import { useState } from "react";
 import { IoEnterOutline } from "react-icons/io5";
 import { MdDeleteOutline, MdModeEdit } from "react-icons/md";
-import { Product, ProductResponse } from "../../../types/product";
+import { ProductRequest, ProductResponse } from "../../../types/product";
 import CheckboxTwo from "../../Checkboxes/CheckboxTwo";
 import EditModal from "../../Modal/EditModal";
 
 
 type ProductItemTableProps = {
     columnList: string[],
-    itemData: Product[],
+    itemData: ProductResponse[],
     onDelete: (id: string) => void,
-    onEdit: (product: Omit<ProductResponse, '_id'>, id: string) => void
+    onEdit: (product: ProductRequest, id: string) => void
 }
 
 const ProductItemTable = ({ columnList, itemData, onDelete, onEdit }: ProductItemTableProps) => {
     const [showModal, setShowModal] = useState(false);
-    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+    const [selectedProduct, setSelectedProduct] = useState<ProductResponse | null>(null);
 
     const handleOnProductSubmit = async (e: React.FormEvent<HTMLFormElement>, isFeatured: boolean) => {
         e.preventDefault();
@@ -23,8 +23,8 @@ const ProductItemTable = ({ columnList, itemData, onDelete, onEdit }: ProductIte
         const formData = new FormData(form);
 
         const name = formData.get('name') as string;
-        const price = '$' + formData.get('price');
-        const offer_price = '$' + formData.get('offerPrice');
+        const price = formData.get('price') as string;
+        const offer_price = formData.get('offerPrice') as string;
         const brandId = formData.get('brandId') as string;
         const categoryId = formData.get('categoryId') as string;
         const description = formData.get('description') as string;
@@ -32,7 +32,7 @@ const ProductItemTable = ({ columnList, itemData, onDelete, onEdit }: ProductIte
         const is_featured = isFeatured;
         const image = formData.get('image') as string;
 
-        const newProduct: Omit<ProductResponse, '_id'> = {
+        const newProduct: ProductRequest = {
             name,
             price,
             offer_price,

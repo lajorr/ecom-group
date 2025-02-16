@@ -7,7 +7,7 @@ type ProductState = {
     fetchProducts: () => void
     addNewProduct: (data: ProductRequest) => Promise<string>
     deleteProduct: (id: string) => Promise<string>
-    updateProduct: (id: string, data: Omit<ProductResponse, '_id'>) => Promise<string>
+    updateProduct: (id: string, data: ProductRequest) => Promise<string>
 }
 
 const ProductContext = createContext<ProductState | undefined>(undefined);
@@ -42,7 +42,7 @@ export const ProductProvider = ({ children }: { children: React.ReactNode }) => 
         return result.msg;
     }
 
-    const updateProduct = async (id: string, product: Omit<ProductResponse, '_id'>) => {
+    const updateProduct = async (id: string, product: ProductRequest) => {
         const result = await updateProductById(id, product);
         await getAllProducts()
         return result.msg;

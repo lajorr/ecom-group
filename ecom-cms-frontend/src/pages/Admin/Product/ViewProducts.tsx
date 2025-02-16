@@ -1,7 +1,7 @@
 import Breadcrumb from "../../../components/Breadcrumbs/Breadcrumb"
 import ProductItemTable from "../../../components/Tables/admin/ProductItemTable"
 import { useProductContext } from "../../../provider/ProductProvider"
-import { ProductResponse } from "../../../types/product"
+import { ProductRequest, ProductResponse } from "../../../types/product"
 
 const ViewProducts = () => {
 
@@ -12,7 +12,7 @@ const ViewProducts = () => {
         const result = await prodCtx.deleteProduct(id);
         alert(result)
     }
-    const handleEdit = async (product: Omit<ProductResponse, '_id'>, id: string) => {
+    const handleEdit = async (product: ProductRequest, id: string) => {
         const result = await prodCtx.updateProduct(id, product)
         alert(result)
     }
