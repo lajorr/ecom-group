@@ -20,7 +20,7 @@ const ViewProducts = () => {
     const prodList: ProductResponse[] = prodCtx.products
     // console.log("asdasdasda" + prodList[0].name)
 
-    const columns = ['Name', 'Category', 'Brand', 'Price', 'Is Featured', 'Action']
+    const columns = ['Name', 'Category', 'Brand', 'Price' , 'Action']
     return (
         <>
             <Breadcrumb pageName="All Products" />

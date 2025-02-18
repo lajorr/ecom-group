@@ -2,7 +2,6 @@ import { useState } from "react";
 import { IoEnterOutline } from "react-icons/io5";
 import { MdDeleteOutline, MdModeEdit } from "react-icons/md";
 import { ProductRequest, ProductResponse } from "../../../types/product";
-import CheckboxTwo from "../../Checkboxes/CheckboxTwo";
 import EditModal from "../../Modal/EditModal";
 
 
@@ -63,7 +62,7 @@ const ProductItemTable = ({ columnList, itemData, onDelete, onEdit }: ProductIte
             </h4>
 
             <div className="flex flex-col">
-                <div className="grid grid-cols-3  rounded-sm bg-gray-2 dark:bg-meta-4 sm:grid-cols-6">
+                <div className="grid grid-cols-3  rounded-sm bg-gray-2 dark:bg-meta-4 sm:grid-cols-5">
                     {columnList.map((columnName, idx) => (
                         <div key={columnName} className={`p-2.5 xl:p-5 sm:block  ${idx > 2 ? "hidden" : ""}`}>
                             <h5 className="text-sm  font-medium uppercase xsm:text-base">
@@ -75,7 +74,7 @@ const ProductItemTable = ({ columnList, itemData, onDelete, onEdit }: ProductIte
 
                 {itemData.map((product, key) => (
                     <div
-                        className={`grid grid-cols-3 items sm:grid-cols-6  ${key === itemData.length - 1
+                        className={`grid grid-cols-3 items sm:grid-cols-5  ${key === itemData.length - 1
                             ? ''
                             : 'border-b border-stroke dark:border-strokedark'
                             }`}
@@ -83,7 +82,6 @@ const ProductItemTable = ({ columnList, itemData, onDelete, onEdit }: ProductIte
                     >
                         <div className="flex items-center gap-3 p-2.5 xl:p-5">
                             <div className="flex-shrink-0">
-                                {/* <img src={product._id} alt="product" /> */}
                                 <p className="text-black dark:text-white" >{product.name}</p>
                             </div>
 
@@ -102,11 +100,6 @@ const ProductItemTable = ({ columnList, itemData, onDelete, onEdit }: ProductIte
                             <p className="hidden text-black dark:text-white sm:block">
                                 {product.price}
                             </p>
-                        </div>
-
-                        <div className="flex items-center  p-2.5 xl:p-5">
-
-                            <CheckboxTwo isChecked={product.is_featured} />
                         </div>
 
                         <div className="flex gap-3 items-center p-2.5 xl:p-5 ">
