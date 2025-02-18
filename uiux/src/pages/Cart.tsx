@@ -7,9 +7,9 @@ const Cart = () => {
   const cartContext = useCartContext();
   const navigate = useNavigate();
   const handleCheckout = () => {
-    cartContext.cartCheckout();
-    alert("Checkout successful");
-    navigate('/')
+    // cartContext.cartCheckout();
+    // alert("Checkout successful");
+    navigate('/cart/checkout')
   }
 
   const columnNames = ["Product", "Price", "Quantity", "Sub total"];

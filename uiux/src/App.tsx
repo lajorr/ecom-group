@@ -7,12 +7,14 @@ import {
 import RootLayout from "./layouts/RootLayout";
 import Cart from "./pages/Cart";
 import CategoryPage from "./pages/CategoryPage";
+import Checkout from "./pages/Checkout";
+import CheckoutSuccess from "./pages/CheckoutSuccess";
 import { Home } from "./pages/Home";
+import SearchResults from "./pages/SearchResults";
+import { BrandProvider } from "./providers/BrandContext";
 import { CartProvider } from "./providers/CartContext";
 import { CategoryProvider } from "./providers/CategoryContext";
 import { ProductProvider } from "./providers/ProductContext";
-import { BrandProvider } from "./providers/BrandContext";
-import SearchResults from "./pages/SearchResults";
 
 function App() {
   const router = createBrowserRouter(
@@ -20,6 +22,8 @@ function App() {
       <Route path="/" element={<RootLayout />}>
         <Route index element={<Home />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="cart/checkout" element={<Checkout />} />
+        <Route path="cart/checkout/success" element={<CheckoutSuccess />} />
         <Route path="category/:categoryName" element={<CategoryPage />} />
         <Route path="search" element={<SearchResults />} />
       </Route>,
