@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { addItemToCart, checkoutCart, deleteItemFromCart, fetchCart, updateCartItemQuantity } from "../services/cart";
+import { addItemToCart, checkoutCart, deleteItemFromCart, fetchCart, getOrderByCartId, updateCartItemQuantity } from "../services/cart";
 import { CartProduct, CartRequest } from "../types/Cart";
+import { Order } from "../types/Order";
 import Product from "../types/Product";
 
 
@@ -13,7 +14,9 @@ type CartContextType = {
     incrementQuantity: (id: string) => void,
     decrementQuantity: (id: string) => void,
     cartTotal: number,
-    cartCheckout: () => void
+    cartCheckout: (name: string, phone: number, address: string) => void,
+    fetchOrderDetails: () => void,
+    orderDetails: Order | null
 
 }
 
@@ -24,6 +27,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     const [cart, setCart] = useState<CartProduct[]>([]);
     const [cartTotal, setCartTotal] = useState<number>(0);
     const [cartId, setCartId] = useState<string | null>(null);
+    const [orderDetails, setOrderDetails] = useState<Order | null>(null);
 
     useEffect(() => { fetchCartItems() }, [])
 
@@ -55,7 +59,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
     const incrementQuantity = async (prodId: string) => {
         const cartProd = cart.find(c => c.product._id === prodId);
-        console.log("inc", cartProd)
         if (cartProd) {
             const updatedCart: CartProduct = {
                 ...cartProd,
@@ -90,13 +93,30 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
             setCart(cartResponse.items);
             setCartTotal(cartResponse.cart_total)
             setCartId(cartResponse._id)
+        } else {
+            setCart([])
+            setCartTotal(0)
+            setCartId(null)
         }
     }
 
-    const cartCheckout = async () => {
-        await checkoutCart();
+    const cartCheckout = async (name: string, phone: number, address: string) => {
+        await checkoutCart({
+            full_name: name,
+            total_amount: cartTotal,
+            address,
+            cart_id: cartId!,
+            phone
+        });
         await fetchCartItems()
     }
+
+    const fetchOrderDetails = async () => {
+        const orderDetails = await getOrderByCartId(cartId!)
+        await fetchCartItems()
+        setOrderDetails(orderDetails)
+    }
+
     return (
         <CartContext.Provider value={
             {
@@ -107,7 +127,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
                 incrementQuantity,
                 decrementQuantity,
                 cartTotal,
-                cartCheckout
+                cartCheckout,
+                fetchOrderDetails,
+                orderDetails
             }
         }
         >

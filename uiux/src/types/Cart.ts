@@ -23,3 +23,11 @@ export type CartRequest = {
     sub_total: number,
     cart_id?: string | null
 }
+
+export type CartCheckoutRequest = {
+    full_name: string
+    address: string
+    total_amount: number
+    cart_id: string
+    phone: number
+}

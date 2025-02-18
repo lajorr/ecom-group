@@ -9,12 +9,6 @@ export const getCartItems = async (req: Request, res: Response) => {
         const cart = await Cart.findOne({
             status: "pending"
         }).populate("items.product", "name price image").exec();
-        console.log(cart);
-        // const total = cart.reduce((total, item) => total + item.sub_total, 0)
-        // const response = {
-        //     items: cart,
-        //     cart_total: total
-        // }
         res.status(200).json(cart);
     } catch (error) {
         console.log(error);
@@ -29,13 +23,11 @@ export const addToCart = async (req: Request, res: Response) => {
             res.status(400).json({ msg: "All fields are required" });
             return;
         }
-        console.log("request", req.body);
         const prod = await Product.findById(product_id);
         if (!prod) {
             res.status(400).json({ msg: "Product not found" });
             return;
         }
-
         const subTotal = sub_total ?? quantity * prod.price;
 
         if (cart_id) {
@@ -77,7 +69,6 @@ export const addToCart = async (req: Request, res: Response) => {
             }
             cart.cart_total = cart.items.reduce((sum, item) => sum + item.sub_total, 0);
             await cart.save()
-            console.log("cartt", cart)
             res.status(200).json({ msg: "Added to cart" });
         } else {
             const cartItem: ICart = await Cart.create({
@@ -168,8 +159,10 @@ export const updateItemQuantity = async (req: Request, res: Response) => {
 
 export const handleCartCheckout = async (req: Request, res: Response) => {
     try {
-        const { address, total_amount, cart_id } = req.body
-        if (!address || !total_amount || !cart_id) {
+        console.log("asd", req.body)
+
+        const { full_name, address, total_amount, cart_id, phone } = req.body
+        if (!full_name || !address || !total_amount || !cart_id || !phone) {
             res.status(400).json({ msg: "All fields are required" });
             return
         }
@@ -184,15 +177,23 @@ export const handleCartCheckout = async (req: Request, res: Response) => {
             return;
         }
         const order = await Order.create({
+            full_name,
             address,
             total_amount,
-            cart_id
+            cart_id,
+            phone
         })
         if (!order) {
             res.status(400).json({ msg: "Order could not be created" });
             return
         }
-        await Cart.findByIdAndDelete(cart_id)
+        await Cart.findByIdAndUpdate({ _id: cart_id },
+            {
+                $set: {
+                    status: "processed"
+                }
+            }
+        )
 
         res.status(200).json({ msg: "checkout complete" });
     } catch (error) {
@@ -201,20 +202,14 @@ export const handleCartCheckout = async (req: Request, res: Response) => {
     }
 };
 
-export const handleCreateOrder = async (req: Request, res: Response) => {
+export const handleGetOrderByCartId = async (req: Request, res: Response) => {
     try {
-        const { address, total_amount, cart_id } = req.body
-        if (!address || !total_amount || !cart_id) {
-            res.status(400).json({ msg: "All fields are required" });
-            return
-        }
-        await Order.create({
-            address,
-            total_amount,
-            cart_id
-        })
-        res.status(201).json({ msg: "Order has been created" })
+        const cartId = req.params.id;
+        const order = await Order.findOne({ cart_id: cartId })
+        res.status(200).json(order);
     } catch (error) {
+        console.log(error);
         res.status(500).json({ msg: "Internal server error" });
     }
 }
+

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addToCart, deleteCartItem, getCartItems, handleCartCheckout, updateItemQuantity } from "../controllers/cart";
+import { addToCart, deleteCartItem, getCartItems, handleCartCheckout, handleGetOrderByCartId, updateItemQuantity } from "../controllers/cart";
 
 const router = Router()
 
@@ -13,5 +13,9 @@ router.route('/:id')
 
 router.route('/checkout')
     .post(handleCartCheckout)
+router.route('/checkout/:id')
+    .get(handleGetOrderByCartId)
+
+
 
 export default router
