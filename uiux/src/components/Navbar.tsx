@@ -1,6 +1,6 @@
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCartContext } from "../providers/CartContext";
 import ExpandableSearch from "./ExpandableSearch";
 import { useCategoryContext } from "../providers/CategoryContext";
@@ -8,6 +8,7 @@ import { useEffect } from "react";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const cartContext = useCartContext();
   const catCtx = useCategoryContext();
 
@@ -28,18 +29,24 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="place-self-center ">
-        <ul className="items-center uppercase inline col-span-2 my-auto">
-          {catList.map((item) => (
+        {catList.map((item) => {
+          const isActive =
+            location.pathname === `/category/${item.name.toLowerCase()}`;
+          return (
             <li
               key={item._id}
-              className="text-[20px] text-white inline-block mr-8 font-semibold cursor-pointer"
+              className={`text-[20px] inline-block mr-8 font-semibold cursor-pointer ${
+                isActive
+                  ? "text-pink-200 border-b-2 border-pink-200"
+                  : "text-white"
+              }`}
             >
               <Link to={`/category/${item.name.toLowerCase()}`}>
                 {item.name}
               </Link>
             </li>
-          ))}
-        </ul>
+          );
+        })}
       </div>
       <div className="flex gap-4 justify-end items-center">
         <ExpandableSearch />
