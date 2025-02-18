@@ -3,7 +3,7 @@ import { CartRequest, CartResponse } from "../types/Cart";
 
 export const fetchCart = async () => {
     try {
-        const response = await api().get<CartResponse>('/carts');
+        const response = await api().get<CartResponse | null>('/carts');
         return response.data;
     } catch (error) {
         throw error
@@ -12,7 +12,9 @@ export const fetchCart = async () => {
 
 export const addItemToCart = async (data: CartRequest) => {
     try {
+        console.log("sertvice")
         const response = await api().post('/carts', data);
+        console.log("resoinse", response.data)
         return response.data;
     } catch (error) {
         throw error

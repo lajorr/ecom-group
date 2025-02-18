@@ -23,6 +23,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
     const [cart, setCart] = useState<CartProduct[]>([]);
     const [cartTotal, setCartTotal] = useState<number>(0);
+    const [cartId, setCartId] = useState<string | null>(null);
 
     useEffect(() => { fetchCartItems() }, [])
 
@@ -35,31 +36,20 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
     const addToCart = async (product: Product) => {
         const newProd: CartRequest = {
-            product: product._id,
+            product_id: product._id,
             quantity: 1,
-            sub_total: Number(product.price),
-            price: Number(product.price),
-            image: product.image
-
+            sub_total: product.price,
+            cart_id: cartId
         }
         const existingProduct = cart.find(cart => cart.product._id === product._id);
 
         if (existingProduct) {
             existingProduct.quantity++;
             existingProduct.sub_total += Number(product.price);
-            await updateCartItemQuantity(existingProduct.product._id, existingProduct.quantity, existingProduct.sub_total)
-        } else {
-            await addItemToCart(
-                {
-                    // product_name: newProd.product_name,
-                    product: newProd.product,
-                    quantity: 1,
-                    sub_total: newProd.sub_total,
-                    image: newProd.image,
-                    price: Number(newProd.price)
-                }
-            );
         }
+        await addItemToCart(
+            newProd
+        );
         await fetchCartItems()
     }
 
@@ -69,7 +59,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
             const updatedCart: CartProduct = {
                 ...cartProd,
                 quantity: cartProd.quantity + 1,
-                sub_total: cartProd.sub_total + Number(cartProd.price)
+                sub_total: cartProd.sub_total + cartProd.product.price
             };
             await updateCartItemQuantity(updatedCart.product._id, updatedCart.quantity, updatedCart.sub_total)
             await fetchCartItems()
@@ -84,7 +74,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
                 const updatedCart = {
                     ...cartProd,
                     quantity: cartProd.quantity - 1,
-                    sub_total: cartProd.sub_total - Number(cartProd.price)
+                    sub_total: cartProd.sub_total - cartProd.product.price
                 }
                 await updateCartItemQuantity(updatedCart.product._id, updatedCart.quantity, updatedCart.sub_total)
                 await fetchCartItems()
@@ -95,21 +85,23 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
     const fetchCartItems = async () => {
         const cartResponse = await fetchCart();
-        setCart(cartResponse.items);
-        setCartTotal(cartResponse.cart_total)
+        if (cartResponse) {
+            setCart(cartResponse.items);
+            setCartTotal(cartResponse.cart_total)
+            setCartId(cartResponse._id)
+        }
     }
 
     const cartCheckout = async () => {
         await checkoutCart();
         await fetchCartItems()
     }
-
     return (
         <CartContext.Provider value={
             {
                 cartList: cart,
-                addToCart,
                 orderLength: cart.length,
+                addToCart,
                 removeItemFromCart: removeItem,
                 incrementQuantity,
                 decrementQuantity,

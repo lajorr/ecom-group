@@ -2,37 +2,52 @@ import { model, ObjectId, Schema } from "mongoose";
 
 
 export interface ICart {
-    product: ObjectId,
-    price: number,
-    quantity: number,
-    sub_total: number,
-    image: string
+    items: {
+        product: ObjectId,
+        quantity: number,
+        sub_total: number,
+    }[],
+    cart_total: number,
+    status: "pending" | "paid"
 
 }
 const cartSchema = new Schema<ICart>({
-    product: {
-        type: Schema.Types.ObjectId,
-        ref:'Product',
-        required: true
+    items: {
+        type: [
+            {
+                product: {
+                    type: Schema.Types.ObjectId,
+                    ref: 'Product',
+                    required: true
+                },
+                quantity: {
+                    type: Number,
+                    required: true
+                },
+                sub_total: {
+                    type: Number,
+                    required: true
+                },
+            }
+        ],
+        default: []
     },
-    price: {
+
+    cart_total: {
         type: Number,
-        required: true
+        required: true,
+        default: 0
     },
-    quantity: {
-        type: Number,
-        required: true
-    },
-    sub_total: {
-        type: Number,
-        required: true
-    },
-    image: {
+    status: {
         type: String,
-        required: true
+        required: true,
+        enum: ['pending', 'paid'],
+        default: 'pending'
     }
+
 })
 
 export const Cart = model('cart', cartSchema);
 
 export default Cart;
+
