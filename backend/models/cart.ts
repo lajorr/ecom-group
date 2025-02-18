@@ -1,9 +1,8 @@
-import { model, Schema } from "mongoose";
+import { model, ObjectId, Schema } from "mongoose";
 
 
 export interface ICart {
-    product_name: string,
-    product_id: string,
+    product: ObjectId,
     price: number,
     quantity: number,
     sub_total: number,
@@ -11,12 +10,9 @@ export interface ICart {
 
 }
 const cartSchema = new Schema<ICart>({
-    product_name: {
-        type: String,
-        required: true
-    },
-    product_id: {
-        type: String,
+    product: {
+        type: Schema.Types.ObjectId,
+        ref:'Product',
         required: true
     },
     price: {

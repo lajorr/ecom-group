@@ -3,7 +3,7 @@ import Cart, { ICart } from "../models/cart";
 
 export const getCartItems = async (req: Request, res: Response) => {
     try {
-        const cart = await Cart.find({})
+        const cart = await Cart.find({}).populate('product', 'name')
         console.log(cart)
         const total = cart.reduce((total, item) => total + item.sub_total, 0)
         const response = {
@@ -20,8 +20,8 @@ export const getCartItems = async (req: Request, res: Response) => {
 
 export const addToCart = async (req: Request, res: Response) => {
     try {
-        const { image, product_name, price, quantity, sub_total, product_id } = req.body;
-        if (!image || !product_name || !price || !quantity) {
+        const { image, price, quantity, sub_total, product } = req.body;
+        if (!image || !price || !quantity) {
             res.status(400).json({ msg: 'All fields are required' });
             return
         }
@@ -29,8 +29,7 @@ export const addToCart = async (req: Request, res: Response) => {
 
         const cartItem: ICart = await Cart.create({
             image,
-            product_name,
-            product_id,
+            product,
             price,
             quantity,
             sub_total: subTotal
@@ -46,14 +45,14 @@ export const addToCart = async (req: Request, res: Response) => {
 
 export const deleteCartItem = async (req: Request, res: Response) => {
     try {
-        const productId = req.params.id;
-        const result = await Cart.deleteOne({ product_id: productId })
+        const prodId = req.params.id;
+        const result = await Cart.findOneAndDelete({ product: prodId })
         if (result === null) {
             res.status(400).json({ msg: 'No cart item found' });
             return
         }
         res.status(200)
-            .json({ msg: `product ${productId} has been removed from cart` })
+            .json({ msg: `cart ${prodId} has been removed` })
     } catch (error) {
         console.log(error);
         res.status(500).json({ msg: 'Internal server error' });
@@ -69,7 +68,7 @@ export const updateItemQuantity = async (req: Request, res: Response) => {
         }
 
         const prodId = req.params.id;
-        const result = await Cart.findOneAndUpdate({ product_id: prodId }, { quantity, sub_total })
+        const result = await Cart.findOneAndUpdate({ product: prodId }, { quantity, sub_total })
         if (result === null) {
             res.status(400).json({ msg: 'No cart item found' });
             return

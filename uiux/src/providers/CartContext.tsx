@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { addItemToCart, checkoutCart, deleteItemFromCart, fetchCart, updateCartItemQuantity } from "../services/cart";
-import { CartProduct } from "../types/Cart";
+import { CartProduct, CartRequest } from "../types/Cart";
 import Product from "../types/Product";
 
 
@@ -27,34 +27,32 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     useEffect(() => { fetchCartItems() }, [])
 
     const removeItem = async (id: string) => {
-        const updatedCart = cart.filter(order => order.product_id !== id);
+        const updatedCart = cart.filter(order => order.product._id !== id);
         await deleteItemFromCart(id);
         await fetchCartItems()
         setCart(updatedCart);
     }
 
     const addToCart = async (product: Product) => {
-        const newProd: CartProduct = {
-            product_name: product.name,
-            product_id: product._id,
+        const newProd: CartRequest = {
+            product: product._id,
             quantity: 1,
             sub_total: Number(product.price),
             price: Number(product.price),
             image: product.image
 
         }
-        const existingProduct = cart.find(order => order.product_id === product._id);
+        const existingProduct = cart.find(cart => cart.product._id === product._id);
 
         if (existingProduct) {
             existingProduct.quantity++;
             existingProduct.sub_total += Number(product.price);
-            await updateCartItemQuantity(existingProduct.product_id, existingProduct.quantity, existingProduct.sub_total)
+            await updateCartItemQuantity(existingProduct.product._id, existingProduct.quantity, existingProduct.sub_total)
         } else {
-            setCart(prev => [...prev, newProd]);
             await addItemToCart(
                 {
-                    product_name: newProd.product_name,
-                    product_id: newProd.product_id,
+                    // product_name: newProd.product_name,
+                    product: newProd.product,
                     quantity: 1,
                     sub_total: newProd.sub_total,
                     image: newProd.image,
@@ -66,22 +64,21 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     }
 
     const incrementQuantity = async (id: string) => {
-        const cartProd = cart.find(c => c.product_id === id);
+        const cartProd = cart.find(c => c.product._id === id);
         if (cartProd) {
             const updatedCart: CartProduct = {
                 ...cartProd,
                 quantity: cartProd.quantity + 1,
                 sub_total: cartProd.sub_total + Number(cartProd.price)
             };
-            await updateCartItemQuantity(updatedCart.product_id, updatedCart.quantity, updatedCart.sub_total)
+            await updateCartItemQuantity(updatedCart.product._id, updatedCart.quantity, updatedCart.sub_total)
             await fetchCartItems()
-            setCart(prev => prev.map(c => c.product_id === id ? updatedCart : c));
+            setCart(prev => prev.map(c => c.product._id === id ? updatedCart : c));
         }
-
     }
 
     const decrementQuantity = async (id: string) => {
-        const cartProd = cart.find(order => order.product_id === id);
+        const cartProd = cart.find(order => order.product._id === id);
         if (cartProd) {
             if (cartProd.quantity > 1) {
                 const updatedCart = {
@@ -89,9 +86,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
                     quantity: cartProd.quantity - 1,
                     sub_total: cartProd.sub_total - Number(cartProd.price)
                 }
-                await updateCartItemQuantity(updatedCart.product_id, updatedCart.quantity, updatedCart.sub_total)
+                await updateCartItemQuantity(updatedCart.product._id, updatedCart.quantity, updatedCart.sub_total)
                 await fetchCartItems()
-                setCart(prev => prev.map(c => c.product_id === id ? updatedCart : c))
+                setCart(prev => prev.map(c => c.product._id === id ? updatedCart : c))
             }
         }
     }

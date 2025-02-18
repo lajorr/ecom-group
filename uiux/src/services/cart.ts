@@ -18,9 +18,9 @@ export const addItemToCart = async (data: CartRequest) => {
         throw error
     }
 }
-export const deleteItemFromCart = async (productId: string) => {
+export const deleteItemFromCart = async (cartId: string) => {
     try {
-        const response = await api().delete(`/carts/${productId}`);
+        const response = await api().delete(`/carts/${cartId}`);
         return response.data;
     } catch (error) {
         throw error
