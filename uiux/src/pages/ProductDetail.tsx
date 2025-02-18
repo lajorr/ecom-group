@@ -11,10 +11,13 @@ const ProductDetail = () => {
   const prodCtx = useProductContext();
   const [product, setProduct] = useState<Product | null>(null);
   const cartContext = useCartContext();
+  const [quantity, setQuantity] = useState(1);
 
   const handleOnCartClick = async () => {
     if (product) {
-      await cartContext.addToCart(product);
+      for (let i = 0; i < quantity; i++) {
+        await cartContext.addToCart(product);
+      }
     }
   };
 
@@ -43,13 +46,20 @@ const ProductDetail = () => {
             Brand: <span className="italic">{product.brand.name}</span>
           </p>
 
-          <div className=" border flex gap-2">
-            <button className="bg-green-400 rounded-[4px]">
-              <AddRoundedIcon sx={{ color: "white" }} />
-            </button>
-            {/* {quantity} */}
-            <button className="bg-red-500 rounded-[4px]">
+          <div className="mt-4 flex items-center space-x-4">
+            <span className="text-lg font-bold mb-2">Quantity</span>
+            <button
+              className="px-4 py-2 bg-red-500 text-black rounded-md"
+              onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
+            >
               <RemoveRoundedIcon sx={{ color: "white" }} />
+            </button>
+            <span className="text-lg font-bold">{quantity}</span>
+            <button
+              className="px-4 py-2 bg-green-400 text-black rounded-md"
+              onClick={() => setQuantity((prev) => prev + 1)}
+            >
+              <AddRoundedIcon sx={{ color: "white" }} />
             </button>
           </div>
           <button
