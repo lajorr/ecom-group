@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useProductContext } from "../providers/ProductContext";
 import Product from "../types/Product";
 import { useCartContext } from "../providers/CartContext";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -41,6 +43,15 @@ const ProductDetail = () => {
             Brand: <span className="italic">{product.brand.name}</span>
           </p>
 
+          <div className=" border flex gap-2">
+            <button className="bg-green-400 rounded-[4px]">
+              <AddRoundedIcon sx={{ color: "white" }} />
+            </button>
+            {/* {quantity} */}
+            <button className="bg-red-500 rounded-[4px]">
+              <RemoveRoundedIcon sx={{ color: "white" }} />
+            </button>
+          </div>
           <button
             className="mt-6 px-6 py-3 bg-blue-600 text-white text-lg font-bold rounded-lg hover:bg-blue-700"
             onClick={handleOnCartClick}
