@@ -3,7 +3,7 @@ import { HiOutlineXMark } from "react-icons/hi2";
 import { useBrandContext } from "../../provider/BrandProvider";
 import { useCategoryContext } from "../../provider/CategoryProvider";
 import { Category } from "../../types/category";
-import { Product } from "../../types/product";
+import { ProductResponse } from "../../types/product";
 import SelectGroupOne from "../Forms/SelectGroup/SelectGroupOne";
 import MySwitcher from "../Switchers/MySwitcher";
 
@@ -18,7 +18,7 @@ type EditModalProps = {
     ) => void,
     handleCategorySubmit?: (e: FormEvent<HTMLFormElement>) => void
     handleBrandSubmit?: (e: FormEvent<HTMLFormElement>) => void
-    selectedProduct?: Product | null,
+    selectedProduct?: ProductResponse | null,
     selectedCategory?: Category | null
     selectedBrand?: Category | null
 }
@@ -91,7 +91,7 @@ const EditModal = ({
                                             required
                                             placeholder="123"
                                             name="price"
-                                            defaultValue={selectedProduct?.price.slice(1) || '0'}
+                                            defaultValue={selectedProduct?.price || '0'}
                                             className="appearance-none w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 pl-9 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                         />
                                     </div>
@@ -111,7 +111,7 @@ const EditModal = ({
 
                                             placeholder="123"
                                             name="offerPrice"
-                                            defaultValue={selectedProduct?.offer_price?.slice(1) || ''}
+                                            defaultValue={selectedProduct?.offer_price ?? 0}
                                             className="appearance-none w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 pl-9 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                         />
                                     </div>
