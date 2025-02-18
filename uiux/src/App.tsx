@@ -15,6 +15,7 @@ import { BrandProvider } from "./providers/BrandContext";
 import { CartProvider } from "./providers/CartContext";
 import { CategoryProvider } from "./providers/CategoryContext";
 import { ProductProvider } from "./providers/ProductContext";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
   const router = createBrowserRouter(
@@ -26,6 +27,11 @@ function App() {
         <Route path="cart/checkout/success" element={<CheckoutSuccess />} />
         <Route path="category/:categoryName" element={<CategoryPage />} />
         <Route path="search" element={<SearchResults />} />
+        <Route path="productdetail/:id" element={<ProductDetail />} />
+        <Route
+          path="category/:categoryName/productdetail/:id"
+          element={<ProductDetail />}
+        />
       </Route>,
     ])
   );

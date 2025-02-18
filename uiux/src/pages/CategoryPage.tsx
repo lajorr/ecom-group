@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useProductContext } from "../providers/ProductContext";
 import ProductCard from "../components/ProductCard";
 import { AdBanner } from "../components/AdBanner";
@@ -111,7 +111,9 @@ const CategoryPage: React.FC = () => {
                     key={product._id}
                     className="p-4 border rounded-lg shadow-md"
                   >
-                    <ProductCard key={product._id} product={product} />
+                    <Link to={`/productdetail/${product._id}`}>
+                      <ProductCard key={product._id} product={product} />
+                    </Link>
                   </div>
                 ))
               ) : (
