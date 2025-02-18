@@ -27,7 +27,7 @@ function App() {
         <Route path="cart/checkout/success" element={<CheckoutSuccess />} />
         <Route path="category/:categoryName" element={<CategoryPage />} />
         <Route path="search" element={<SearchResults />} />
-        <Route path="/productdetail/:id" element={<ProductDetail />} />
+        <Route path="productdetail/:id" element={<ProductDetail />} />
       </Route>,
     ])
   );
