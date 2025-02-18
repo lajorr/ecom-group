@@ -27,22 +27,22 @@ export const Home = () => {
   const uniqueCategories = catCtx.categories;
   const brandList = brandCtx.brands;
 
-  // 🔹 State for Filters
+  // State for Filters
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000]);
 
-  // 🔹 Handle Brand Selection
+  // Handle Brand Selection
   const handleBrandChange = (brand: string) => {
     setSelectedBrands((prev) =>
       prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]
     );
   };
 
-  // 🔹 Get Min & Max Price Dynamically
+  // Get Min & Max Price Dynamically
   const minPrice = Math.min(...productList.map((p) => p.price), 0);
   const maxPrice = Math.max(...productList.map((p) => p.price), 1000);
 
-  // 🔹 Filter Products
+  // Filter Products
   let filteredProducts = productList;
 
   // Filter by Brand

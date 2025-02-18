@@ -28,6 +28,10 @@ function App() {
         <Route path="category/:categoryName" element={<CategoryPage />} />
         <Route path="search" element={<SearchResults />} />
         <Route path="productdetail/:id" element={<ProductDetail />} />
+        <Route
+          path="category/:categoryName/productdetail/:id"
+          element={<ProductDetail />}
+        />
       </Route>,
     ])
   );

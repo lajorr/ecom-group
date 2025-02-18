@@ -12,9 +12,9 @@ const ProductCard = ({ product }: ProductCardProp) => {
   };
   return (
     <div className="flex justify-center">
-      <Link to={`product-detail/${_id}`}>
-        <div className="bg-gray-300 w-min rounded-xl overflow-hidden ">
-          <div className="w-[250px] cursor-pointer relative group">
+      <div className="bg-gray-300 w-min rounded-xl overflow-hidden ">
+        <div className="w-[250px] cursor-pointer relative group">
+          <Link to={`productdetail/${_id}`}>
             <img
               className="w-full h-[180px] object-cover"
               src={image}
@@ -23,13 +23,15 @@ const ProductCard = ({ product }: ProductCardProp) => {
                 console.log("img clicked");
               }}
             />
-            <button
-              className="absolute bottom-0 w-full bg-black/70 text-white text-[16px] font-bold py-4  hidden group-hover:block hover:underline"
-              onClick={handleOnCartClick}
-            >
-              Add to Cart
-            </button>
-          </div>
+          </Link>
+          <button
+            className="absolute bottom-0 w-full bg-black/70 text-white text-[16px] font-bold py-4  hidden group-hover:block hover:underline"
+            onClick={handleOnCartClick}
+          >
+            Add to Cart
+          </button>
+        </div>
+        <Link to={`product-detail/${_id}`}>
           <div className="size-full py-3 px-4">
             <h2 className="font-bold text-[20px] leading-6">{name}</h2>
             <p
@@ -42,8 +44,8 @@ const ProductCard = ({ product }: ProductCardProp) => {
             </p>
             <p className="text-[16px] font-[500]">${price}</p>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </div>
   );
 };
