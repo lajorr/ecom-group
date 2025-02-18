@@ -101,6 +101,9 @@ const CategoryPage: React.FC = () => {
           </section>
 
           <div className="w-full flex flex-col gap-4">
+            <h1 className="text-[36px] font-[500] mb-4 capitalize text-center">
+              {categoryName}
+            </h1>
             <div className="grid grid-cols-3 gap-y-12 gap-x-12 mx-8 mb-4">
               {filteredProducts.length > 0 ? (
                 filteredProducts.map((product) => (
