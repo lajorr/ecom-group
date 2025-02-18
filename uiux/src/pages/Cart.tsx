@@ -4,13 +4,13 @@ import { useCartContext } from "../providers/CartContext";
 
 const Cart = () => {
 
-    const cartContext = useCartContext();
-    const navigate = useNavigate();
-    const handleCheckout = () => {
-        cartContext.cartCheckout();
-        alert("Checkout successful");
-        navigate('/')
-    }
+  const cartContext = useCartContext();
+  const navigate = useNavigate();
+  const handleCheckout = () => {
+    // cartContext.cartCheckout();
+    // alert("Checkout successful");
+    navigate('/cart/checkout')
+  }
 
   const columnNames = ["Product", "Price", "Quantity", "Sub total"];
   return (
@@ -23,38 +23,38 @@ const Cart = () => {
         ))}
       </div>
 
-            <div className="flex flex-col gap-4">
-                {cartContext.orderLength > 0 &&
-                    cartContext.cartList.map(order => (
-                        <CartOrderTile
-                            key={order.product_id}
-                            removeItem={cartContext.removeItemFromCart}
-                            order={order}
-                            decrementQuantity={cartContext.decrementQuantity}
-                            incrementQuantity={cartContext.incrementQuantity} />
-                    ))
-                }
-                {cartContext.orderLength === 0 &&
-                    <div className="text-[20px] font-bold text-center">Your cart is empty</div>}
-            </div>
+      <div className="flex flex-col gap-4">
+        {cartContext.orderLength > 0 &&
+          cartContext.cartList.map(cart => (
+            <CartOrderTile
+              key={cart.product._id}
+              removeItem={cartContext.removeItemFromCart}
+              order={cart}
+              decrementQuantity={cartContext.decrementQuantity}
+              incrementQuantity={cartContext.incrementQuantity} />
+          ))
+        }
+        {cartContext.orderLength === 0 &&
+          <div className="text-[20px] font-bold text-center">Your cart is empty</div>}
+      </div>
 
-            <div className=" flex justify-end mt-20 ">
-                <div className="bg-gray-200 rounded-[4px] px-4 py-4 flex flex-col gap-4 w-[300px]">
-                    <CartPricings title="Sub Total" value={`$${cartContext.cartTotal}`} />
-                    <hr className="bg-black h-0.5" />
-                    <CartPricings title="Shipping Fee" value="Free" />
-                    <hr className="bg-black h-0.5" />
-                    <CartPricings title="Total" value={`$${cartContext.cartTotal}`} />
-                    <button className={`${cartContext.orderLength === 0 ?
-                        "bg-gray-500 cursor-not-allowed" : "bg-green-600"}
+      <div className=" flex justify-end mt-20 ">
+        <div className="bg-gray-200 rounded-[4px] px-4 py-4 flex flex-col gap-4 w-[300px]">
+          <CartPricings title="Sub Total" value={`$${cartContext.cartTotal}`} />
+          <hr className="bg-black h-0.5" />
+          <CartPricings title="Shipping Fee" value="Free" />
+          <hr className="bg-black h-0.5" />
+          <CartPricings title="Total" value={`$${cartContext.cartTotal}`} />
+          <button className={`${cartContext.orderLength === 0 ?
+            "bg-gray-500 cursor-not-allowed" : "bg-green-600"}
                          text-white py-2 rounded-[4px]`}
-                        onClick={handleCheckout} >Checkout</button>
-                </div>
-            </div>
+            onClick={handleCheckout} >Checkout</button>
+        </div>
+      </div>
 
 
-        </div >
-    )
+    </div >
+  )
 }
 
 type CartPricingsType = {

@@ -1,25 +1,33 @@
 
 export type CartProduct = {
-    product_name: string,
-    product_id: string,
-    price: number,
+    product: {
+        _id: string,
+        name: string,
+        image: string,
+        price: number,
+    },
     quantity: number,
     sub_total: number,
-    image: string,
-
 }
 
 export type CartResponse = {
-    _id: string,
+    _id: string, //cart id
     items: CartProduct[],
-    cart_total: number
+    cart_total: number,
+    status: "pending" | "paid"
 }
 
 export type CartRequest = {
-    image: string,
-    product_name: string,
     product_id: string,
-    price: number,
     quantity: number,
-    sub_total: number
+    sub_total: number,
+    cart_id?: string | null
+}
+
+export type CartCheckoutRequest = {
+    full_name: string
+    address: string
+    total_amount: number
+    cart_id: string
+    phone: number
 }

@@ -24,6 +24,7 @@ app.use("/api/categories", CategoryRoutes);
 app.use("/api/products", ProductRoutes);
 app.use("/api/carts", CartRoutes);
 
+
 app.listen(PORT, () =>
   console.log(`Server running at http://localhost:${PORT}`)
 );

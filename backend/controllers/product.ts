@@ -84,5 +84,5 @@ export {
   handleCreateNewProduct,
   handleDeleteProductById,
   handleGetAllProducts,
-  handleUpdateProductById,
+  handleUpdateProductById
 };
