@@ -29,9 +29,9 @@ export const deleteItemFromCart = async (cartId: string) => {
     }
 }
 
-export const updateCartItemQuantity = async (cartId: string, quantity: number, sub_total: number) => {
+export const updateCartItemQuantity = async (cartId: string, productId: string, quantity: number) => {
     try {
-        const response = await api().patch(`/carts/${cartId}`, { quantity, sub_total });
+        const response = await api().patch(`/carts/${cartId}`, { quantity, product_id: productId });
         return response.data;
     } catch (error) {
         console.log(error)

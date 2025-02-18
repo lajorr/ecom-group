@@ -129,22 +129,36 @@ export const deleteCartItem = async (req: Request, res: Response) => {
 
 export const updateItemQuantity = async (req: Request, res: Response) => {
     try {
-        const { quantity, sub_total } = req.body;
-        if (!quantity || !sub_total) {
+        const { quantity, product_id } = req.body;
+        if (!quantity || !product_id) {
             res.status(400).json({ msg: "Quantity and Sub total are required" });
             return;
         }
 
-        const prodId = req.params.id;
-        const result = await Cart.findOneAndUpdate(
-            { product: prodId },
-            { quantity, sub_total }
+        const prod = await Product.findById(product_id)
+        if (!prod) {
+            res.status(400).json({ msg: "Product not found" })
+            return
+        }
+
+        const cartId = req.params.id;
+        const cart = await Cart.findOneAndUpdate(
+            { _id: cartId, 'items.product': product_id },
+            {
+                $set: {
+                    "items.$.quantity": quantity,  // Update quantity
+                    "items.$.sub_total": prod.toObject().price * quantity // Update sub_total
+                },
+            },
+            { new: true }
         );
-        if (result === null) {
+        if (cart === null) {
             res.status(400).json({ msg: "No cart item found" });
             return;
         }
-        res.status(200).json({ msg: `cart item ${result._id} has been updated` });
+        cart.cart_total = cart.items.reduce((sum, item) => sum + item.sub_total, 0);
+        await cart.save();
+        res.status(200).json({ msg: `cart item ${cart._id} has been updated` });
     } catch (error) {
         console.log(error);
         res.status(500).json({ msg: "Internal server error" });

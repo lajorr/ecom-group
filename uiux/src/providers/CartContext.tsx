@@ -53,17 +53,18 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         await fetchCartItems()
     }
 
-    const incrementQuantity = async (id: string) => {
-        const cartProd = cart.find(c => c.product._id === id);
+    const incrementQuantity = async (prodId: string) => {
+        const cartProd = cart.find(c => c.product._id === prodId);
+        console.log("inc", cartProd)
         if (cartProd) {
             const updatedCart: CartProduct = {
                 ...cartProd,
                 quantity: cartProd.quantity + 1,
                 sub_total: cartProd.sub_total + cartProd.product.price
             };
-            await updateCartItemQuantity(updatedCart.product._id, updatedCart.quantity, updatedCart.sub_total)
+            await updateCartItemQuantity(cartId!, updatedCart.product._id, updatedCart.quantity)
             await fetchCartItems()
-            setCart(prev => prev.map(c => c.product._id === id ? updatedCart : c));
+            setCart(prev => prev.map(c => c.product._id === prodId ? updatedCart : c));
         }
     }
 
@@ -76,7 +77,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
                     quantity: cartProd.quantity - 1,
                     sub_total: cartProd.sub_total - cartProd.product.price
                 }
-                await updateCartItemQuantity(updatedCart.product._id, updatedCart.quantity, updatedCart.sub_total)
+                await updateCartItemQuantity(cartId!, updatedCart.product._id, updatedCart.quantity)
                 await fetchCartItems()
                 setCart(prev => prev.map(c => c.product._id === id ? updatedCart : c))
             }
