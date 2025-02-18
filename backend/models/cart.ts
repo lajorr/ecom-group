@@ -41,7 +41,7 @@ const cartSchema = new Schema<ICart>({
     status: {
         type: String,
         required: true,
-        enum: ['pending', 'paid'],
+        enum: ['pending', 'processed'],
         default: 'pending'
     }
 

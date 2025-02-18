@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Types } from "mongoose";
 import Cart, { ICart } from "../models/cart";
+import { Order } from "../models/order";
 import Product from "../models/product";
 
 export const getCartItems = async (req: Request, res: Response) => {
@@ -167,19 +168,53 @@ export const updateItemQuantity = async (req: Request, res: Response) => {
 
 export const handleCartCheckout = async (req: Request, res: Response) => {
     try {
-        const cartItems = await Cart.find({});
+        const { address, total_amount, cart_id } = req.body
+        if (!address || !total_amount || !cart_id) {
+            res.status(400).json({ msg: "All fields are required" });
+            return
+        }
+        const cart = await Cart.findById(cart_id)
+        if (!cart) {
+            res.status(400).json({ msg: "No cart found" });
+            return
+        }
+        const cartItems = cart.toObject().items
         if (cartItems.length === 0) {
             res.status(400).json({ msg: "Cart is empty" });
             return;
         }
-        // await Cart.deleteMany({})
-        // const response = {
-        //     items: cartItems,
-        //     total: cartItems.reduce((total, item) => total + item.sub_total, 0),
-        // }
-        res.status(200).json({ msg: "wip" });
+        const order = await Order.create({
+            address,
+            total_amount,
+            cart_id
+        })
+        if (!order) {
+            res.status(400).json({ msg: "Order could not be created" });
+            return
+        }
+        await Cart.findByIdAndDelete(cart_id)
+
+        res.status(200).json({ msg: "checkout complete" });
     } catch (error) {
         console.log(error);
         res.status(500).json({ msg: "Internal server error" });
     }
 };
+
+export const handleCreateOrder = async (req: Request, res: Response) => {
+    try {
+        const { address, total_amount, cart_id } = req.body
+        if (!address || !total_amount || !cart_id) {
+            res.status(400).json({ msg: "All fields are required" });
+            return
+        }
+        await Order.create({
+            address,
+            total_amount,
+            cart_id
+        })
+        res.status(201).json({ msg: "Order has been created" })
+    } catch (error) {
+        res.status(500).json({ msg: "Internal server error" });
+    }
+}
